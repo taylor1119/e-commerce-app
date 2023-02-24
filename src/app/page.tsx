@@ -1,3 +1,9 @@
+import FeaturedProductsCarousel from '@/components/FeaturedProductsCarousel';
+
 export default function Home() {
-	return <main></main>;
+	return (
+		<main>
+			<FeaturedProductsCarousel />
+		</main>
+	);
 }
