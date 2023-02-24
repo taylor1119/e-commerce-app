@@ -1,5 +1,6 @@
 import FeaturedProductsCarousel from '@/components/FeaturedProductsCarousel';
 import ProductsCarousel from '@/components/ProductsCarousel';
+import ProductsCategories from '@/components/ProductsCategories';
 import ProductsGuide from '@/components/ProductsGuide';
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
 			<FeaturedProductsCarousel />
 			<ProductsGuide />
 			<ProductsCarousel />
+			<ProductsCategories />
 		</main>
 	);
 }
