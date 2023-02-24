@@ -1,3 +1,4 @@
+import Banner from '@/components/Banner';
 import FeaturedProductsCarousel from '@/components/FeaturedProductsCarousel';
 import ProductsCarousel from '@/components/ProductsCarousel';
 import ProductsCategories from '@/components/ProductsCategories';
@@ -10,6 +11,7 @@ export default function Home() {
 			<ProductsGuide />
 			<ProductsCarousel />
 			<ProductsCategories />
+			<Banner />
 		</main>
 	);
 }
