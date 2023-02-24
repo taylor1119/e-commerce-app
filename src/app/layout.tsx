@@ -1,6 +1,8 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import SearchBar from '@/components/Header/SearchBar';
 import Sidebar from '@/components/Sidebar';
+import ThemeButton from '@/components/ThemeButton';
 import { primaryFont, secondaryFont } from '@/fonts';
 import { RecoilProvider } from '@/providers/recoil-provider';
 import { NextThemeProvider } from '../providers/theme-provider';
@@ -33,6 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<SearchBar />
 						<Sidebar />
 						{children}
+						<Footer />
+						<ThemeButton />
 					</RecoilProvider>
 				</NextThemeProvider>
 			</body>
