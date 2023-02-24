@@ -188,8 +188,8 @@ export default function Sidebar() {
 							</Link>
 						</li>
 					</ul>
-					{/* revert color on hover */}
-					<div className='mt-auto space-y-3 pt-5 text-center'>
+					{/*TODO revert color on hover */}
+					<div className='mt-auto space-y-5 text-center'>
 						<div className='cursor-pointer rounded bg-black py-3 px-6 text-white dark:bg-white dark:text-black'>
 							LOGIN
 						</div>

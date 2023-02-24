@@ -17,6 +17,7 @@ export default function ProductsCarousel() {
 		slides: {
 			origin: 'center',
 			perView: 1,
+			spacing: 20,
 		},
 		breakpoints: {
 			'(min-width: 640px)': {

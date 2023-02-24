@@ -75,12 +75,12 @@ export default function Footer() {
 						<p className='text-gray-400'>
 							Enter you email to the first to know about new collections and launches
 						</p>
-						<div className='flex max-w-sm gap-x-3 rounded border-2 p-4'>
+						<div className='flex w-fit gap-x-3 rounded border-2 p-4'>
 							<i className='ri-mail-line' />
 							<input
 								type='text'
 								placeholder='Enter your email'
-								className='bg-transparent outline-none'
+								className='bg-transparent outline-none sm:w-64'
 							/>
 							<i className='ri-arrow-right-line ml-auto' />
 						</div>

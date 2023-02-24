@@ -66,15 +66,14 @@ export default function FeaturedProductsCarousel() {
 
 	return (
 		<section>
-			<div className='relative' ref={sliderRef}>
-				<div className='relative h-[560px] md:h-[calc(100vh-80px)]'>
+			<div className='relative flex flex-col md:h-[calc(100vh-80px)]' ref={sliderRef}>
+				<div className='relative h-80 md:h-[calc(100vh-80px)]'>
 					{SLIDES.map((slide, index) => (
 						<Image
 							key={index}
 							src={slide.image}
 							width={1905}
 							height={859}
-							quality={100}
 							alt='slider image'
 							style={{ opacity: opacities[index] }}
 							className='absolute h-80 object-cover md:h-[calc(100vh-80px)]'
@@ -86,7 +85,7 @@ export default function FeaturedProductsCarousel() {
 					<Transition
 						key={index}
 						show={index === currentSlide}
-						className='absolute right-1/2 top-80 flex w-screen -translate-y-10 translate-x-1/2 flex-col items-center justify-center gap-8 text-center text-white md:top-auto md:bottom-5 md:max-w-lg'
+						className='mx-auto flex w-screen -translate-y-10 flex-col items-center gap-10 text-center text-white md:max-w-lg md:-translate-y-14'
 					>
 						<Transition.Child
 							as='span'
