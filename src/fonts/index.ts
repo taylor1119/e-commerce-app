@@ -1,4 +1,4 @@
-import { Montserrat, Prata } from '@next/font/google';
+import { Montserrat, Prata } from 'next/font/google';
 
 export const primaryFont = Montserrat({
 	weight: ['400', '500', '600'],

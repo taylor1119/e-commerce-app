@@ -67,7 +67,7 @@ const CONTACTS = [
 
 export default function Footer() {
 	return (
-		<footer className='border border-gray-50 bg-gray-100 dark:border-slate-800 dark:bg-slate-900'>
+		<footer className='mt-auto border border-gray-50 bg-gray-100 dark:border-slate-800 dark:bg-slate-900'>
 			<div className='flex flex-col gap-y-10 p-14'>
 				<div className='flex flex-wrap justify-between gap-10'>
 					<div className='space-y-3'>
