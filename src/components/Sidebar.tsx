@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+//TODO use dialog headless comp to get keyboard shortcuts
 export default function Sidebar() {
 	const [productsMenuOpen, setProductsMenuOpen] = useState(false);
 	const [specialsMenuOpen, setSpecialsMenuOpen] = useState(false);
@@ -41,14 +42,14 @@ export default function Sidebar() {
 			<Transition.Child
 				as={Fragment}
 				enterFrom='opacity-0'
-				enterTo='opacity-75'
-				leaveFrom='opacity-75'
+				enterTo='opacity-100'
+				leaveFrom='opacity-100'
 				leaveTo='opacity-0'
 				leave='duration-300 ease-in-out'
 				enter='duration-300 ease-in-out'
 			>
 				<div
-					className='fixed top-0 left-0 z-30 h-screen w-screen bg-dark text-xl'
+					className='fixed top-0 left-0 z-30 h-screen w-screen bg-black/75 text-xl'
 					onClick={closeSidebar}
 				/>
 			</Transition.Child>

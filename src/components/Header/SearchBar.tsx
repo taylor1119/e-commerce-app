@@ -5,6 +5,7 @@ import { Transition } from '@headlessui/react';
 import { Fragment, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
+//TODO use dialog headless comp to get keyboard shortcuts
 export default function SearchBar() {
 	const [searchBarOpen, setSearchBarOpen] = useRecoilState(searchBarOpenState);
 	const closeSearchBar = () => setSearchBarOpen(false);
@@ -40,7 +41,7 @@ export default function SearchBar() {
 					/>
 					<i className='ri-close-line cursor-pointer' onClick={closeSearchBar} />
 				</form>
-				<div className='z-20 h-full bg-dark opacity-75' />
+				<div className='z-20 h-full bg-black/75' />
 			</div>
 		</Transition>
 	);

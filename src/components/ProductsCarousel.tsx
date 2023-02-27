@@ -2,7 +2,6 @@
 
 import { PRODUCTS } from '@/mocks';
 import { tw } from '@/utils';
-import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import { useState } from 'react';
 import ProductCard from './common/ProductCard';
@@ -61,7 +60,7 @@ export default function ProductsCarousel() {
 				</button>
 
 				<ul
-					className='keen-slider max-w-[225px] sm:max-w-lg md:max-w-3xl lg:max-w-5xl'
+					className='flex max-w-[225px] overflow-hidden sm:max-w-lg md:max-w-3xl lg:max-w-5xl'
 					ref={sliderRef}
 				>
 					{PRODUCTS.map((product, index) => (
