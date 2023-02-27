@@ -9,3 +9,8 @@ export const sidebarOpenState = atom({
 	key: 'SidebarOpen',
 	default: false,
 });
+
+export const shoppingCartOpenState = atom({
+	key: 'ShoppingCartOpen',
+	default: false,
+});
