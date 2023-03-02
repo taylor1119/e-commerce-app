@@ -6,7 +6,7 @@ import { Transition } from '@headlessui/react';
 import { KeenSliderPlugin, useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PAUSE_DURATION = 2 * 1000;
 const ANIMATION_DURATION = 1 * 1000;
@@ -40,6 +40,7 @@ const autoPlaySliderPlugin: KeenSliderPlugin = (slider) => {
 
 export default function FeaturedProductsCarousel() {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [CurrentSlideBounced, setCurrentSlideBounced] = useState(0);
 	const [opacities, setOpacities] = useState<number[]>([]);
 
 	const featuredProducts = [PRODUCTS[3], PRODUCTS[2], PRODUCTS[0], PRODUCTS[6], PRODUCTS[9]];
@@ -57,12 +58,19 @@ export default function FeaturedProductsCarousel() {
 				setOpacities(new_opacities);
 			},
 			slideChanged(slider) {
-				setCurrentSlide(slider.track.details.rel);
+				setCurrentSlideBounced(slider.track.details.rel);
 			},
 		},
 
 		[autoPlaySliderPlugin]
 	);
+
+	useEffect(() => {
+		const changeCurrentSlide = setTimeout(() => setCurrentSlide(CurrentSlideBounced), 250);
+		return () => {
+			clearTimeout(changeCurrentSlide);
+		};
+	}, [CurrentSlideBounced]);
 
 	const slideButtonClasses = (index: number) =>
 		currentSlide === index ? tw`h-2 w-2 bg-black` : tw`h-4 w-4 bg-transparent`;
@@ -84,44 +92,47 @@ export default function FeaturedProductsCarousel() {
 					))}
 				</div>
 
-				{featuredProducts.map((product, index) => (
-					<Transition
-						key={index}
-						show={index === currentSlide}
-						className='mx-auto flex w-screen -translate-y-10 flex-col items-center gap-10 text-center text-white md:max-w-lg md:-translate-y-14'
-					>
-						<Transition.Child
-							as='span'
-							enter='duration-700'
-							enterFrom='translate-y-12 opacity-0'
-							enterTo='translate-y-0 opacity-100'
-							className='flex h-20 w-20 items-center justify-center rounded-full bg-teal-400 text-3xl'
+				<div className='min-h-[16rem] md:min-h-min'>
+					{featuredProducts.map((product, index) => (
+						<Transition
+							key={index}
+							show={index === currentSlide && index === CurrentSlideBounced}
+							leave='hidden'
+							className='mx-auto flex w-screen -translate-y-10 flex-col items-center gap-10 text-center text-white md:max-w-lg md:-translate-y-14'
 						>
-							${product.price}
-						</Transition.Child>
-						<Transition.Child
-							as='h3'
-							enter='delay-500 duration-700'
-							enterFrom='translate-y-12 opacity-0'
-							enterTo='translate-y-0 opacity-100'
-							className='font-secondary text-4xl text-black dark:text-white md:text-6xl md:text-white'
-						>
-							{product.name}
-						</Transition.Child>
-						<Transition.Child
-							enter='delay-700 duration-700'
-							enterFrom='translate-y-12 opacity-0'
-							enterTo='translate-y-0 opacity-100'
-						>
-							<Link
-								href={`/products/${product.category}/${product.id}`}
-								className='cursor-pointer rounded border-2 border-black py-3 px-6 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'
+							<Transition.Child
+								as='span'
+								enter='duration-700'
+								enterFrom='translate-y-12 opacity-0'
+								enterTo='translate-y-0 opacity-100'
+								className='flex h-20 w-20 items-center justify-center rounded-full bg-teal-400 text-3xl'
 							>
-								SHOP NOW
-							</Link>
-						</Transition.Child>
-					</Transition>
-				))}
+								${product.price}
+							</Transition.Child>
+							<Transition.Child
+								as='h3'
+								enter='delay-500 duration-700'
+								enterFrom='translate-y-12 opacity-0'
+								enterTo='translate-y-0 opacity-100'
+								className='font-secondary text-4xl text-black dark:text-white md:text-6xl md:text-white'
+							>
+								{product.name}
+							</Transition.Child>
+							<Transition.Child
+								enter='delay-700 duration-700'
+								enterFrom='translate-y-12 opacity-0'
+								enterTo='translate-y-0 opacity-100'
+							>
+								<Link
+									href={`/products/${product.category}/${product.id}`}
+									className='cursor-pointer rounded border-2 border-black py-3 px-6 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'
+								>
+									SHOP NOW
+								</Link>
+							</Transition.Child>
+						</Transition>
+					))}
+				</div>
 
 				<ul className='absolute right-3 top-40 -translate-y-1/2 space-y-3 md:top-1/2'>
 					{featuredProducts.map((_, index) => (
