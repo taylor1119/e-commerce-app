@@ -12,6 +12,8 @@
 		"Prata",
 		"tailwindcss",
 		"Versace",
-		"Baatchia"
-	]
+		"Baatchia",
+		"pnpm"
+	],
+	"ignorePaths": ["pnpm-lock.yaml"]
 }
