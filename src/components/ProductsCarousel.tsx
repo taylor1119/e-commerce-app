@@ -1,6 +1,6 @@
 'use client';
 
-import { PRODUCTS } from '@/mocks';
+import PRODUCTS from '@/mocks/products';
 import { tw } from '@/utils';
 import { useKeenSlider } from 'keen-slider/react';
 import { useState } from 'react';

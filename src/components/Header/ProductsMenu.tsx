@@ -1,16 +1,20 @@
 import { APPARELS, PERFUMES, SHOES } from '@/constants/brands';
-import { PRODUCTS } from '@/mocks';
+import PRODUCTS from '@/mocks/products';
 import Link from 'next/link';
 import ProductCard from '../common/ProductCard';
 
+//TODO use state with transition to hide on click
 export default function ProductsMenu() {
+	const products = [PRODUCTS[9], PRODUCTS[11], PRODUCTS[10]];
 	return (
 		<div className='invisible fixed right-0 top-20 z-20 flex w-screen translate-y-2 justify-center gap-10 bg-white p-4 text-sm capitalize opacity-0 shadow-lg duration-300 ease-in-out group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:opacity-100 dark:bg-dark'>
-			<div className='flex max-h-[calc(100vh-80px-2rem)] flex-wrap justify-center gap-10 overflow-y-auto'>
-				{PRODUCTS.slice(0, 3).map((product, index) => (
-					<ProductCard key={index} product={product} />
+			<ul className='flex max-h-[calc(100vh-80px-2rem)] flex-wrap justify-center gap-10 overflow-y-auto'>
+				{products.map((product) => (
+					<li key={product.id}>
+						<ProductCard product={product} />
+					</li>
 				))}
-			</div>
+			</ul>
 
 			<div className='flex flex-wrap gap-10 text-gray-400'>
 				<ul className='w-32 space-y-4'>

@@ -1,3 +1,3 @@
-import { TAGS } from '@/constants';
+import { CATEGORIES } from '@/constants';
 
-export type TTag = (typeof TAGS)[number];
+export type TCategory = (typeof CATEGORIES)[number];

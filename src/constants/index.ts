@@ -1,1 +1,1 @@
-export const TAGS = ['all', 'sweater', 'hoodie', 'shirt'] as const;
+export const CATEGORIES = ['all', 'sweater', 'hoodie', 'shirt'] as const;

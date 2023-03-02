@@ -1,9 +1,10 @@
 'use client';
 
-import productImage from '@/../public/images/product_01.jpg';
+import PRODUCTS from '@/mocks/products';
 import { shoppingCartOpenState } from '@/recoil/atoms';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Fragment } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -14,6 +15,20 @@ export default function ShoppingCart() {
 
 	return (
 		<Transition show={sidebarOpen}>
+			<Transition.Child
+				as={Fragment}
+				enterFrom='opacity-0'
+				enterTo='opacity-100'
+				leaveFrom='opacity-100'
+				leaveTo='opacity-0'
+				leave='duration-300 ease-in-out'
+				enter='duration-300 ease-in-out'
+			>
+				<div
+					className='fixed top-0 left-0 z-30 h-screen w-screen bg-black/75 text-xl'
+					onClick={closeSidebar}
+				/>
+			</Transition.Child>
 			<Transition.Child
 				as={Fragment}
 				enterFrom='opacity-0'
@@ -42,19 +57,19 @@ export default function ShoppingCart() {
 				<aside className='fixed top-0 right-0 z-30 flex h-screen w-80 flex-col gap-y-5 overflow-y-auto bg-white text-base shadow-lg dark:bg-dark'>
 					<h3 className='px-5 pt-5 font-secondary text-3xl'>Shopping Cart</h3>
 					<ul className='space-y-3 overflow-auto pl-5'>
-						{[...Array(8)].map((_, index) => (
-							<li key={index} className='flex gap-x-3'>
-								<div className='flex flex-col items-center text-lg'>
-									<button className='h-8 w-8 rounded-t bg-gray-400'>-</button>
+						{PRODUCTS.map((product) => (
+							<li key={product.id} className='flex gap-x-3'>
+								<div className='flex flex-col items-center text-lg text-black'>
+									<button className='h-8 w-8 rounded-t bg-gray-200'>-</button>
 									<input
-										className='h-8 w-8 bg-gray-400 text-center outline-none'
+										className='h-8 w-8 bg-gray-200 text-center outline-none'
 										type='text'
 										defaultValue={1}
 									/>
-									<button className='h-8 w-8 rounded-b bg-gray-400'>+</button>
+									<button className='h-8 w-8 rounded-b bg-gray-200'>+</button>
 								</div>
 								<Image
-									src={productImage}
+									src={product.image}
 									alt='product image'
 									placeholder='blur'
 									className='h-24 w-auto rounded'
@@ -70,7 +85,7 @@ export default function ShoppingCart() {
 					</ul>
 					{/*TODO revert color on hover */}
 					<div className='mt-auto space-y-3 border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
-						<div className='flex justify-between rounded border-2 bg-white p-2'>
+						<div className='flex justify-between rounded border bg-white p-2 dark:bg-dark'>
 							<input
 								type='text'
 								placeholder='Coupon'
@@ -114,10 +129,23 @@ export default function ShoppingCart() {
 							</span>
 						</div>
 						<div className='space-y-3 font-semibold'>
-							<button className='w-full rounded bg-teal-400 py-2 text-white'>Checkout</button>
-							<button className='w-full rounded border border-black py-2 dark:border-white'>
+							<Link
+								href='/checkout'
+								type='button'
+								className='flex w-full items-center justify-center rounded bg-teal-400 py-2 text-white'
+								onClick={closeSidebar}
+							>
+								Checkout
+							</Link>
+
+							<Link
+								href='/cart'
+								type='button'
+								className='flex w-full items-center justify-center rounded border border-black py-2 dark:border-white'
+								onClick={closeSidebar}
+							>
 								View Cart
-							</button>
+							</Link>
 						</div>
 					</div>
 				</aside>

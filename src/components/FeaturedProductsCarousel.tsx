@@ -1,10 +1,11 @@
 'use client';
 
-import { SLIDES } from '@/mocks';
+import PRODUCTS from '@/mocks/products';
 import { tw } from '@/utils';
 import { Transition } from '@headlessui/react';
 import { KeenSliderPlugin, useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const PAUSE_DURATION = 2 * 1000;
@@ -41,9 +42,11 @@ export default function FeaturedProductsCarousel() {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [opacities, setOpacities] = useState<number[]>([]);
 
+	const featuredProducts = [PRODUCTS[3], PRODUCTS[2], PRODUCTS[0], PRODUCTS[6], PRODUCTS[9]];
+
 	const [sliderRef, instanceRef] = useKeenSlider(
 		{
-			slides: 3,
+			slides: featuredProducts.length,
 			loop: true,
 			renderMode: 'performance',
 			defaultAnimation: {
@@ -68,20 +71,20 @@ export default function FeaturedProductsCarousel() {
 		<section>
 			<div className='relative flex flex-col md:h-[calc(100vh-80px)]' ref={sliderRef}>
 				<div className='relative h-80 md:h-[calc(100vh-80px)]'>
-					{SLIDES.map((slide, index) => (
+					{featuredProducts.map((product, index) => (
 						<Image
 							key={index}
-							src={slide.image}
-							width={1905}
-							height={859}
+							src={product.slide}
 							alt='slider image'
 							style={{ opacity: opacities[index] }}
-							className='absolute h-80 object-cover md:h-[calc(100vh-80px)]'
+							className='absolute h-full w-full object-cover object-top md:h-[calc(100vh-80px)]'
+							quality={100}
+							placeholder='blur'
 						/>
 					))}
 				</div>
 
-				{SLIDES.map((slide, index) => (
+				{featuredProducts.map((product, index) => (
 					<Transition
 						key={index}
 						show={index === currentSlide}
@@ -94,7 +97,7 @@ export default function FeaturedProductsCarousel() {
 							enterTo='translate-y-0 opacity-100'
 							className='flex h-20 w-20 items-center justify-center rounded-full bg-teal-400 text-3xl'
 						>
-							{slide.price}
+							${product.price}
 						</Transition.Child>
 						<Transition.Child
 							as='h3'
@@ -103,22 +106,25 @@ export default function FeaturedProductsCarousel() {
 							enterTo='translate-y-0 opacity-100'
 							className='font-secondary text-4xl text-black dark:text-white md:text-6xl md:text-white'
 						>
-							{slide.title}
+							{product.name}
 						</Transition.Child>
 						<Transition.Child
 							enter='delay-700 duration-700'
 							enterFrom='translate-y-12 opacity-0'
 							enterTo='translate-y-0 opacity-100'
 						>
-							<div className='cursor-pointer rounded border-2 border-black py-3 px-6 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'>
+							<Link
+								href={`/products/${product.category}/${product.id}`}
+								className='cursor-pointer rounded border-2 border-black py-3 px-6 font-semibold text-black duration-300 hover:bg-black hover:text-white dark:border-white dark:text-white md:border-white md:text-white md:hover:bg-white md:hover:text-black'
+							>
 								SHOP NOW
-							</div>
+							</Link>
 						</Transition.Child>
 					</Transition>
 				))}
 
 				<ul className='absolute right-3 top-40 -translate-y-1/2 space-y-3 md:top-1/2'>
-					{SLIDES.map((_, index) => (
+					{featuredProducts.map((_, index) => (
 						<li
 							key={index}
 							className='flex h-4 w-4 items-center justify-center'

@@ -1,11 +1,6 @@
 'use client';
 
-import prodImg1 from '@/../public/images/product_01.jpg';
-import prodImg1b from '@/../public/images/product_01b.jpg';
-import prodImg2 from '@/../public/images/product_02.jpg';
-import prodImg2b from '@/../public/images/product_02b.jpg';
-import prodImg3 from '@/../public/images/product_03.jpg';
-import prodImg3b from '@/../public/images/product_03b.jpg';
+import PRODUCTS from '@/mocks/products';
 import { tw } from '@/utils';
 import { KeenSliderInstance, KeenSliderPlugin, useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
@@ -45,7 +40,6 @@ function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): 
 }
 
 export default function ThumbnailSlider() {
-	const arr = [prodImg1, prodImg1b, prodImg2, prodImg2b, prodImg3, prodImg3b, prodImg1b, prodImg2];
 	const [currentSlide, setCurrentSlide] = useState(0);
 
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLUListElement>({
@@ -76,15 +70,21 @@ export default function ThumbnailSlider() {
 		<div className='flex h-[600px] flex-row-reverse justify-center gap-x-3'>
 			<div className='relative'>
 				<ul ref={sliderRef} className='flex w-[450px] overflow-hidden'>
-					{arr.map((image, index) => (
-						<li key={index} className='keen-slider__slide shrink-0'>
-							<Image src={image} alt='product image' placeholder='blur' className='rounded' />
+					{PRODUCTS.map((product) => (
+						<li key={product.id} className='keen-slider__slide shrink-0'>
+							<Image
+								src={product.image}
+								alt='product image'
+								quality={100}
+								placeholder='blur'
+								className='rounded'
+							/>
 						</li>
 					))}
 				</ul>
 
 				<ul className='absolute bottom-5 right-1/2 flex translate-x-1/2 gap-x-3'>
-					{arr.map((_, index) => (
+					{PRODUCTS.map((_, index) => (
 						<li key={index} className='flex h-4 w-4 items-center justify-center sm:hidden'>
 							<span
 								onClick={() => instanceRef.current?.moveToIdx(index)}
@@ -97,10 +97,13 @@ export default function ThumbnailSlider() {
 				</ul>
 			</div>
 			<ul ref={thumbnailRef} className='hidden flex-col overflow-hidden sm:flex'>
-				{arr.map((image, index) => (
-					<li key={index} className={`${thumbnailClasses(index)} keen-slider__slide duration-300`}>
+				{PRODUCTS.map((product) => (
+					<li
+						key={product.id}
+						className={`${thumbnailClasses(product.id)} keen-slider__slide duration-300`}
+					>
 						<Image
-							src={image}
+							src={product.image}
 							alt='product image'
 							placeholder='blur'
 							className='h-[90px] w-auto rounded'

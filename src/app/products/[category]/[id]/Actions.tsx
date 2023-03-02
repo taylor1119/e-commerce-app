@@ -69,16 +69,16 @@ export default function Actions({ product }: { product: IProduct }) {
 			</div>
 
 			<div className='flex flex-wrap gap-3'>
-				<div className='flex items-center text-xl'>
-					<button className='h-10 w-10 rounded-l bg-gray-400'>-</button>
+				<div className='flex items-center text-xl text-black'>
+					<button className='h-10 w-10 rounded-l bg-gray-200'>-</button>
 					<input
-						className='h-10 w-10 bg-gray-400 text-center outline-none'
+						className='h-10 w-10 bg-gray-200 text-center outline-none'
 						type='text'
 						defaultValue={1}
 					/>
-					<button className='h-10 w-10 rounded-r bg-gray-400'>+</button>
+					<button className='h-10 w-10 rounded-r bg-gray-200'>+</button>
 				</div>
-				<button className='h-10 flex-grow rounded border-2 font-semibold'>ADD TO CARD</button>
+				<button className='h-10 flex-grow rounded border-2 font-semibold'>ADD TO CART</button>
 				<button className='h-10 w-full rounded bg-black font-semibold text-white dark:bg-white dark:text-black'>
 					BUY NOW
 				</button>

@@ -1,11 +1,14 @@
-import { TTag } from './types';
+import { StaticImageData } from 'next/image';
+import { TCategory } from './types';
 
 export interface IProduct {
-	id: string;
+	id: number;
 	name: string;
 	price: number;
-	image1: string;
-	image2: string;
 	discount: number;
-	tags: TTag[];
+	color: string;
+	category: Exclude<TCategory, 'all'>;
+	image: StaticImageData;
+	altImage: StaticImageData;
+	slide: StaticImageData;
 }

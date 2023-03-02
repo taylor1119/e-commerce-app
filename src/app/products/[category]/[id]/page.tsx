@@ -1,5 +1,5 @@
 import ProductsCarousel from '@/components/ProductsCarousel';
-import { PRODUCTS } from '@/mocks';
+import PRODUCTS from '@/mocks/products';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Actions from './Actions';
@@ -10,7 +10,7 @@ interface IProps {
 	params: { id: string };
 }
 
-const getProduct = (id: string) => PRODUCTS[parseInt(id) - 1];
+const getProduct = (id: string) => PRODUCTS[parseInt(id)];
 
 export function generateMetadata({ params }: IProps) {
 	const product = getProduct(params.id);
@@ -19,8 +19,7 @@ export function generateMetadata({ params }: IProps) {
 }
 
 export default function page({ params }: IProps) {
-	const index = parseInt(params.id) - 1;
-	const product = PRODUCTS[index];
+	const product = getProduct(params.id);
 	if (!product) notFound();
 	return (
 		<main>
@@ -29,16 +28,11 @@ export default function page({ params }: IProps) {
 				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
 					<Link href='/'>Home</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<Link href='/product'>Product</Link>
+					<Link href='/product/all'>Product</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<Link href={`/product/${product.tags[0]}`}>{product.tags[0]}</Link>
+					<Link href={`/products/${product.category}`}>{product.category}</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<Link
-						href={`/product/${product.id}`}
-						className='overflow-hidden text-ellipsis whitespace-nowrap'
-					>
-						{product.name}
-					</Link>
+					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>{product.name}</span>
 				</div>
 				<div className='flex flex-wrap items-center justify-center gap-10'>
 					<ThumbnailSlider />
