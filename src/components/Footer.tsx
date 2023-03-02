@@ -80,7 +80,7 @@ export default function Footer() {
 							<input
 								type='text'
 								placeholder='Enter your email'
-								className='bg-transparent outline-none sm:w-64'
+								className='w-full bg-transparent outline-none sm:w-64'
 							/>
 							<i className='ri-arrow-right-line ml-auto' />
 						</div>

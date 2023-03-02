@@ -71,7 +71,7 @@ export default function ThumbnailSlider() {
 			<div className='relative'>
 				<ul ref={sliderRef} className='flex w-[450px] overflow-hidden'>
 					{PRODUCTS.map((product) => (
-						<li key={product.id} className='keen-slider__slide shrink-0'>
+						<li key={product.id} className='keen-slider__slide md:shrink-0'>
 							<Image
 								src={product.image}
 								alt='product image'
