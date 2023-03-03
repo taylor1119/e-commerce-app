@@ -11,4 +11,12 @@ export interface IProduct {
 	image: StaticImageData;
 	altImage: StaticImageData;
 	slide: StaticImageData;
+	relatedProducts?: {
+		id: number;
+		color: string;
+	}[];
+}
+
+export interface ICartItem extends IProduct {
+	quantity: number;
 }

@@ -1,4 +1,5 @@
 import { IProduct } from '@/common/interfaces';
+import { getDiscountedValue } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -67,7 +68,7 @@ export default function ProductCard({ product }: IProductCardProps) {
 						${product.price.toFixed(2)}
 					</span>
 					{Boolean(product.discount) &&
-						'$' + (product.price - (product.price * product.discount) / 100).toFixed(2)}
+						'$' + getDiscountedValue(product.price, product.discount).toFixed(2)}
 				</h3>
 			</div>
 		</div>

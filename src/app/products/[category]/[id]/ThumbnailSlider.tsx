@@ -1,10 +1,12 @@
 'use client';
 
-import PRODUCTS from '@/mocks/products';
+import { IProduct } from '@/common/interfaces';
 import { tw } from '@/utils';
 import { KeenSliderInstance, KeenSliderPlugin, useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import { MutableRefObject, useState } from 'react';
+
+const SLIDES_NUMBER = 8;
 
 function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
 	return (slider) => {
@@ -39,7 +41,7 @@ function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): 
 	};
 }
 
-export default function ThumbnailSlider() {
+export default function ThumbnailSlider({ product }: { product: IProduct }) {
 	const [currentSlide, setCurrentSlide] = useState(0);
 
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLUListElement>({
@@ -70,10 +72,10 @@ export default function ThumbnailSlider() {
 		<div className='flex flex-row-reverse justify-center gap-x-3 '>
 			<div className='relative'>
 				<ul ref={sliderRef} className='flex w-screen overflow-hidden sm:w-[450px]'>
-					{PRODUCTS.map((product) => (
-						<li key={product.id} className='keen-slider__slide shrink-0'>
+					{[...Array(SLIDES_NUMBER)].map((_, index) => (
+						<li key={index} className='keen-slider__slide shrink-0'>
 							<Image
-								src={product.image}
+								src={index % 2 ? product.image : product.altImage}
 								alt='product image'
 								quality={100}
 								placeholder='blur'
@@ -84,7 +86,7 @@ export default function ThumbnailSlider() {
 				</ul>
 
 				<ul className='absolute bottom-5 right-1/2 flex translate-x-1/2 gap-x-3'>
-					{PRODUCTS.map((_, index) => (
+					{[...Array(SLIDES_NUMBER)].map((_, index) => (
 						<li key={index} className='flex h-4 w-4 items-center justify-center sm:hidden'>
 							<span
 								onClick={() => instanceRef.current?.moveToIdx(index)}
@@ -97,13 +99,10 @@ export default function ThumbnailSlider() {
 				</ul>
 			</div>
 			<ul ref={thumbnailRef} className='hidden h-[600px] flex-col overflow-hidden sm:flex'>
-				{PRODUCTS.map((product) => (
-					<li
-						key={product.id}
-						className={`${thumbnailClasses(product.id)} keen-slider__slide duration-300`}
-					>
+				{[...Array(SLIDES_NUMBER)].map((_, index) => (
+					<li key={index} className={`${thumbnailClasses(index)} keen-slider__slide duration-300`}>
 						<Image
-							src={product.image}
+							src={index % 2 ? product.image : product.altImage}
 							alt='product image'
 							placeholder='blur'
 							className='h-[90px] w-auto rounded'

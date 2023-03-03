@@ -46,6 +46,7 @@ import shirt04 from '@/../public/images/products/shirt/product_04.jpg';
 import shirt04b from '@/../public/images/products/shirt/product_04b.jpg';
 import shirtSlide04 from '@/../public/images/products/shirt/slide_04.jpg';
 import { IProduct } from '@/common/interfaces';
+import { tw } from '@/utils';
 
 const PRODUCTS: IProduct[] = [
 	{
@@ -58,6 +59,20 @@ const PRODUCTS: IProduct[] = [
 		image: sweater01,
 		altImage: sweater01b,
 		slide: sweaterSlide01,
+		relatedProducts: [
+			{
+				id: 1,
+				color: tw`bg-sky-400 border-sky-400`,
+			},
+			{
+				id: 2,
+				color: tw`bg-yellow-600 border-yellow-600`,
+			},
+			{
+				id: 3,
+				color: tw`bg-red-700 border-red-700`,
+			},
+		],
 	},
 	{
 		id: 1,
@@ -69,10 +84,24 @@ const PRODUCTS: IProduct[] = [
 		image: sweater02,
 		altImage: sweater02b,
 		slide: sweaterSlide02,
+		relatedProducts: [
+			{
+				id: 0,
+				color: tw`bg-teal-400 border-teal-400`,
+			},
+			{
+				id: 2,
+				color: tw`bg-yellow-600 border-yellow-600`,
+			},
+			{
+				id: 3,
+				color: tw`bg-red-700 border-red-700`,
+			},
+		],
 	},
 	{
 		id: 2,
-		name: 'Red Sweater',
+		name: 'Brown Sweater',
 		price: 45,
 		discount: 25,
 		color: 'brown',
@@ -80,10 +109,24 @@ const PRODUCTS: IProduct[] = [
 		image: sweater03,
 		altImage: sweater03b,
 		slide: sweaterSlide03,
+		relatedProducts: [
+			{
+				id: 0,
+				color: tw`bg-teal-400 border-teal-400`,
+			},
+			{
+				id: 1,
+				color: tw`bg-sky-400 border-sky-400`,
+			},
+			{
+				id: 3,
+				color: tw`bg-red-700 border-red-700`,
+			},
+		],
 	},
 	{
 		id: 3,
-		name: 'Brown Sweater',
+		name: 'Red Sweater',
 		price: 40,
 		discount: 30,
 		color: 'red',
@@ -91,6 +134,20 @@ const PRODUCTS: IProduct[] = [
 		image: sweater04,
 		altImage: sweater04b,
 		slide: sweaterSlide04,
+		relatedProducts: [
+			{
+				id: 0,
+				color: tw`bg-teal-400 border-teal-400`,
+			},
+			{
+				id: 1,
+				color: tw`bg-sky-400 border-sky-400`,
+			},
+			{
+				id: 2,
+				color: tw`bg-yellow-600 border-yellow-600`,
+			},
+		],
 	},
 
 	{
@@ -103,6 +160,20 @@ const PRODUCTS: IProduct[] = [
 		image: hoodie01,
 		altImage: hoodie01b,
 		slide: hoodieSlide01,
+		relatedProducts: [
+			{
+				id: 5,
+				color: tw`bg-sky-300 border-sky-300`,
+			},
+			{
+				id: 6,
+				color: tw`bg-pink-400 border-pink-400`,
+			},
+			{
+				id: 7,
+				color: tw`bg-orange-500 border-orange-500`,
+			},
+		],
 	},
 	{
 		id: 5,
@@ -114,6 +185,20 @@ const PRODUCTS: IProduct[] = [
 		image: hoodie02,
 		altImage: hoodie02b,
 		slide: hoodieSlide02,
+		relatedProducts: [
+			{
+				id: 4,
+				color: tw`bg-gray-400 border-gray-400`,
+			},
+			{
+				id: 6,
+				color: tw`bg-pink-400 border-pink-400`,
+			},
+			{
+				id: 7,
+				color: tw`bg-orange-500 border-orange-500`,
+			},
+		],
 	},
 	{
 		id: 6,
@@ -125,6 +210,20 @@ const PRODUCTS: IProduct[] = [
 		image: hoodie03,
 		altImage: hoodie03b,
 		slide: hoodieSlide03,
+		relatedProducts: [
+			{
+				id: 4,
+				color: tw`bg-gray-400 border-gray-400`,
+			},
+			{
+				id: 5,
+				color: tw`bg-sky-300 border-sky-300`,
+			},
+			{
+				id: 7,
+				color: tw`bg-orange-500 border-orange-500`,
+			},
+		],
 	},
 	{
 		id: 7,
@@ -136,6 +235,20 @@ const PRODUCTS: IProduct[] = [
 		image: hoodie04,
 		altImage: hoodie04b,
 		slide: hoodieSlide04,
+		relatedProducts: [
+			{
+				id: 4,
+				color: tw`bg-gray-400 border-gray-400`,
+			},
+			{
+				id: 5,
+				color: tw`bg-sky-300 border-sky-300`,
+			},
+			{
+				id: 6,
+				color: tw`bg-pink-400 border-pink-400`,
+			},
+		],
 	},
 
 	{
@@ -148,6 +261,20 @@ const PRODUCTS: IProduct[] = [
 		image: shirt01,
 		altImage: shirt01b,
 		slide: shirtSlide01,
+		relatedProducts: [
+			{
+				id: 9,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 10,
+				color: tw`bg-white border hover:brightness-90`,
+			},
+			{
+				id: 11,
+				color: tw`bg-blue-900 border-blue-900`,
+			},
+		],
 	},
 	{
 		id: 9,
@@ -159,6 +286,20 @@ const PRODUCTS: IProduct[] = [
 		image: shirt02,
 		altImage: shirt02b,
 		slide: shirtSlide02,
+		relatedProducts: [
+			{
+				id: 8,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 10,
+				color: tw`bg-white border hover:brightness-90`,
+			},
+			{
+				id: 11,
+				color: tw`bg-blue-900 border-blue-900`,
+			},
+		],
 	},
 	{
 		id: 10,
@@ -170,6 +311,20 @@ const PRODUCTS: IProduct[] = [
 		image: shirt03,
 		altImage: shirt03b,
 		slide: shirtSlide03,
+		relatedProducts: [
+			{
+				id: 8,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 9,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 11,
+				color: tw`bg-blue-900 border-blue-900`,
+			},
+		],
 	},
 	{
 		id: 11,
@@ -181,6 +336,20 @@ const PRODUCTS: IProduct[] = [
 		image: shirt04,
 		altImage: shirt04b,
 		slide: shirtSlide04,
+		relatedProducts: [
+			{
+				id: 8,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 9,
+				color: tw`bg-sky-200 border-sky-200`,
+			},
+			{
+				id: 10,
+				color: tw`bg-white border hover:brightness-90`,
+			},
+		],
 	},
 ];
 

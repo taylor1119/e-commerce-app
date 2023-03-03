@@ -1,17 +1,33 @@
 'use client';
 
-import PRODUCTS from '@/mocks/products';
-import { shoppingCartOpenState } from '@/recoil/atoms';
+import { ICartItem } from '@/common/interfaces';
+import { cartItemsState, shippingPlanState, shoppingCartOpenState } from '@/recoil/atoms';
+import { cartStatsState } from '@/recoil/selectors';
+import { getDiscountedValue } from '@/utils';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function ShoppingCart() {
 	const [sidebarOpen, setSidebarOpen] = useRecoilState(shoppingCartOpenState);
+	const [shippingPlan, setShippingPlan] = useRecoilState(shippingPlanState);
+	const cartStats = useRecoilValue(cartStatsState);
+	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+
 	const closeSidebar = () => setSidebarOpen(false);
+
+	const handleChangeQuantity = (cartItem: ICartItem, quantity: number) => {
+		setCartItems((prevItems) => {
+			const newItems = new Map(prevItems);
+			cartItem.quantity <= 0
+				? newItems.delete(cartItem.id)
+				: newItems.set(cartItem.id, { ...cartItem, quantity });
+			return newItems;
+		});
+	};
 
 	return (
 		<Transition show={sidebarOpen}>
@@ -57,28 +73,46 @@ export default function ShoppingCart() {
 				<aside className='fixed top-0 right-0 z-30 flex h-screen w-80 flex-col gap-y-5 overflow-y-auto bg-white text-base shadow-lg dark:bg-dark'>
 					<h3 className='px-5 pt-5 font-secondary text-3xl'>Shopping Cart</h3>
 					<ul className='space-y-3 overflow-auto pl-5'>
-						{PRODUCTS.map((product) => (
-							<li key={product.id} className='flex gap-x-3'>
+						{Array.from(cartItems.values()).map((cartItem, index) => (
+							<li key={index} className='flex gap-x-3 text-sm'>
 								<div className='flex flex-col items-center text-lg text-black'>
-									<button className='h-8 w-8 rounded-t bg-gray-200'>-</button>
-									<input
-										className='h-8 w-8 bg-gray-200 text-center outline-none'
-										type='text'
-										defaultValue={1}
-									/>
-									<button className='h-8 w-8 rounded-b bg-gray-200'>+</button>
+									<button
+										disabled={cartItem.quantity <= 0}
+										onClick={() => handleChangeQuantity(cartItem, cartItem.quantity - 1)}
+										className='h-8 w-8 rounded-t bg-gray-200'
+									>
+										-
+									</button>
+									<span className='h-8 w-8 bg-gray-200 flex items-center justify-center'>
+										{cartItem.quantity}
+									</span>
+									<button
+										onClick={() => handleChangeQuantity(cartItem, cartItem.quantity + 1)}
+										className='h-8 w-8 rounded-b bg-gray-200'
+									>
+										+
+									</button>
 								</div>
 								<Image
-									src={product.image}
+									src={cartItem.image}
 									alt='product image'
 									placeholder='blur'
 									className='h-24 w-auto rounded'
 								/>
-								<ul>
-									<li className='font-semibold'>Tosca Sweater</li>
-									<li className='text-gray-400'>Color: Blue</li>
+								<ul className='flex flex-col'>
+									<li className='font-semibold'>{cartItem.name}</li>
+									<li className='text-gray-400 capitalize'>Color: {cartItem.color}</li>
 									<li className='text-gray-400'>Size: L</li>
-									<li>Price: $46.50</li>
+									<li className='mt-auto space-x-1'>
+										<span>Price:</span>
+										<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
+											${cartItem.price.toFixed(2)}
+										</span>
+										<span>
+											{Boolean(cartItem.discount) &&
+												'$' + getDiscountedValue(cartItem.price, cartItem.discount).toFixed(2)}
+										</span>
+									</li>
 								</ul>
 							</li>
 						))}
@@ -97,21 +131,33 @@ export default function ShoppingCart() {
 							<ul className='space-y-1 pb-3 text-gray-400'>
 								<li className='flex justify-between'>
 									<span>Sub-Total</span>
-									<span>$120.00</span>
+									<span>{cartStats.subTotal}</span>
 								</li>
 								<li className='space-y-1'>
 									<span>Shipping</span>
 									<ul className='ml-10'>
 										<li className='flex justify-between'>
 											<span className='flex items-center gap-x-1'>
-												<input type='radio' name='shipping' />
+												<input
+													type='radio'
+													name='shipping'
+													value='free'
+													checked={shippingPlan === 'free'}
+													onClick={() => setShippingPlan('free')}
+												/>
 												<label>Free</label>
 											</span>
-											<span>-$0</span>
+											<span>$0</span>
 										</li>
 										<li className='flex justify-between'>
 											<span className='flex items-center gap-x-1'>
-												<input type='radio' name='shipping' />
+												<input
+													type='radio'
+													name='shipping'
+													value='express'
+													checked={shippingPlan === 'express'}
+													onClick={() => setShippingPlan('express')}
+												/>
 												<label>Express</label>
 											</span>
 											<span>$30</span>
@@ -120,12 +166,12 @@ export default function ShoppingCart() {
 								</li>
 								<li className='flex justify-between'>
 									<span>Discount</span>
-									<span>-$25</span>
+									<span>-${cartStats.totalDiscount}</span>
 								</li>
 							</ul>
 							<span className='flex justify-between pt-3 font-semibold'>
 								<span>Total</span>
-								<span>$147.00</span>
+								<span>${cartStats.totalPrice}</span>
 							</span>
 						</div>
 						<div className='space-y-3 font-semibold'>

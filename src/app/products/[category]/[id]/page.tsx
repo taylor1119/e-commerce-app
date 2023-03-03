@@ -35,7 +35,7 @@ export default function page({ params }: IProps) {
 					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>{product.name}</span>
 				</div>
 				<div className='flex flex-wrap items-center justify-center gap-10'>
-					<ThumbnailSlider />
+					<ThumbnailSlider product={product} />
 					<Actions product={product} />
 				</div>
 			</section>

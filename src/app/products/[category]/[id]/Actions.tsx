@@ -1,11 +1,32 @@
+'use client';
+
 import { IProduct } from '@/common/interfaces';
+import { cartItemsState } from '@/recoil/atoms';
+import { getDiscountedValue } from '@/utils';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 export default function Actions({ product }: { product: IProduct }) {
 	const price = product.price.toFixed(2);
-	const discountedPrice = (product.price - (product.price * product.discount) / 100).toFixed(2);
+	const discountedPrice = getDiscountedValue(product.price, product.discount).toFixed(2);
+
+	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+	const [quantity, setQuantity] = useState(cartItems.get(product.id)?.quantity ?? 0);
+
+	const handleAddToCart = () =>
+		setCartItems((prev) => {
+			const newItems = new Map(prev);
+			newItems.set(product.id, { ...product, quantity });
+			return newItems;
+		});
+
+	useEffect(() => {
+		setQuantity(cartItems.get(product.id)?.quantity ?? 0);
+	}, [cartItems, product.id]);
 
 	return (
-		<div className='w-[450px] space-y-3 px-5'>
+		<div className='space-y-3 px-5'>
 			<div>
 				<h1 className='font-secondary text-5xl'>{product.name}</h1>
 
@@ -31,15 +52,14 @@ export default function Actions({ product }: { product: IProduct }) {
 			<div className='space-y-1'>
 				<span className='font-semibold'>Colors:</span>
 				<ul className='flex gap-x-3'>
-					<li>
-						<button className='h-10 w-10 rounded-full border-2 border-teal-400 bg-teal-400 duration-300 hover:shadow-[inset_0_0_0_4px_white]'></button>
-					</li>
-					<li>
-						<button className='h-10 w-10 rounded-full border-2 border-yellow-800 bg-yellow-800 duration-300 hover:shadow-[inset_0_0_0_4px_white]'></button>
-					</li>
-					<li>
-						<button className='h-10 w-10 rounded-full border-2 border-blue-400 bg-blue-400 duration-300 hover:shadow-[inset_0_0_0_4px_white]'></button>
-					</li>
+					{product.relatedProducts?.map(({ color, id }, index) => (
+						<li key={index}>
+							<Link
+								href={`/products/${product.category}/${id}`}
+								className={`h-10 w-10 block rounded-full border-2 ${color} duration-300 hover:shadow-[inset_0_0_0_4px_white]`}
+							></Link>
+						</li>
+					))}
 				</ul>
 			</div>
 
@@ -70,15 +90,27 @@ export default function Actions({ product }: { product: IProduct }) {
 
 			<div className='flex flex-wrap gap-3'>
 				<div className='flex items-center text-xl text-black'>
-					<button className='h-10 w-10 rounded-l bg-gray-200'>-</button>
-					<input
-						className='h-10 w-10 bg-gray-200 text-center outline-none'
-						type='text'
-						defaultValue={1}
-					/>
-					<button className='h-10 w-10 rounded-r bg-gray-200'>+</button>
+					<button
+						disabled={!quantity}
+						onClick={() => setQuantity((prev) => prev - 1)}
+						className='h-10 w-10 rounded-l bg-gray-200'
+					>
+						-
+					</button>
+					<span className='h-10 w-10 bg-gray-200 flex items-center justify-center'>{quantity}</span>
+					<button
+						onClick={() => setQuantity((prev) => prev + 1)}
+						className='h-10 w-10 rounded-r bg-gray-200'
+					>
+						+
+					</button>
 				</div>
-				<button className='h-10 flex-grow rounded border-2 font-semibold'>ADD TO CART</button>
+				<button
+					onClick={handleAddToCart}
+					className='h-10 flex-grow rounded border-2 font-semibold align-middle'
+				>
+					ADD TO CART
+				</button>
 				<button className='h-10 w-full rounded bg-black font-semibold text-white dark:bg-white dark:text-black'>
 					BUY NOW
 				</button>
