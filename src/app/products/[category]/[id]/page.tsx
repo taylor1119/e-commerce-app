@@ -12,7 +12,7 @@ interface IProps {
 
 const getProduct = (id: string) => PRODUCTS[parseInt(id)];
 
-export function generateMetadata({ params }: IProps) {
+export async function generateMetadata({ params }: IProps) {
 	const product = getProduct(params.id);
 	if (!product) notFound();
 	return { title: product.name };
@@ -28,7 +28,7 @@ export default function page({ params }: IProps) {
 				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
 					<Link href='/'>Home</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<Link href='/product/all'>Product</Link>
+					<Link href='/products/all'>Product</Link>
 					<i className='ri-arrow-right-s-line'></i>
 					<Link href={`/products/${product.category}`}>{product.category}</Link>
 					<i className='ri-arrow-right-s-line'></i>

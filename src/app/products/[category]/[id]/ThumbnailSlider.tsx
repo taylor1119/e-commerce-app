@@ -67,17 +67,17 @@ export default function ThumbnailSlider() {
 		currentSlide === index ? tw`opacity-100` : tw`opacity-60`;
 
 	return (
-		<div className='flex h-[600px] flex-row-reverse justify-center gap-x-3'>
+		<div className='flex flex-row-reverse justify-center gap-x-3 '>
 			<div className='relative'>
-				<ul ref={sliderRef} className='flex w-[450px] overflow-hidden'>
+				<ul ref={sliderRef} className='flex w-screen overflow-hidden sm:w-[450px]'>
 					{PRODUCTS.map((product) => (
-						<li key={product.id} className='keen-slider__slide md:shrink-0'>
+						<li key={product.id} className='keen-slider__slide shrink-0'>
 							<Image
 								src={product.image}
 								alt='product image'
 								quality={100}
 								placeholder='blur'
-								className='rounded'
+								className='rounded w-screen h-auto sm:h-[600px] sm:w-[450px]'
 							/>
 						</li>
 					))}
@@ -96,7 +96,7 @@ export default function ThumbnailSlider() {
 					))}
 				</ul>
 			</div>
-			<ul ref={thumbnailRef} className='hidden flex-col overflow-hidden sm:flex'>
+			<ul ref={thumbnailRef} className='hidden h-[600px] flex-col overflow-hidden sm:flex'>
 				{PRODUCTS.map((product) => (
 					<li
 						key={product.id}
