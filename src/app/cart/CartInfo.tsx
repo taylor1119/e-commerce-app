@@ -1,11 +1,14 @@
 'use client';
 
+import { shippingPlanState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function CartInfo() {
 	const cartStats = useRecoilValue(cartStatsState);
+	const [shippingPlan, setShippingPlan] = useRecoilState(shippingPlanState);
+
 	return (
 		<section className='mx-auto max-w-lg space-y-5 p-5 text-lg'>
 			<div className='flex justify-between rounded border bg-white p-2 dark:bg-dark'>
@@ -23,14 +26,26 @@ export default function CartInfo() {
 						<ul className='ml-10'>
 							<li className='flex justify-between'>
 								<span className='flex items-center gap-x-1'>
-									<input type='radio' name='shipping' />
+									<input
+										type='radio'
+										name='free'
+										value='free'
+										checked={shippingPlan === 'free'}
+										onClick={() => setShippingPlan('free')}
+									/>
 									<label>Free</label>
 								</span>
 								<span>-$0</span>
 							</li>
 							<li className='flex justify-between'>
 								<span className='flex items-center gap-x-1'>
-									<input type='radio' name='shipping' />
+									<input
+										type='radio'
+										name='express'
+										value='express'
+										checked={shippingPlan === 'express'}
+										onClick={() => setShippingPlan('express')}
+									/>
 									<label>Express</label>
 								</span>
 								<span>$30</span>

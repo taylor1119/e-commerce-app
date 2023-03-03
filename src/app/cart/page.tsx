@@ -1,6 +1,11 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import CartInfo from './CartInfo';
 import CartItems from './CartItems';
+
+export function generateMetadata(): Metadata {
+	return { title: 'Cart' };
+}
 
 export default function page() {
 	return (

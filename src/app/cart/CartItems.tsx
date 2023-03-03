@@ -14,8 +14,8 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 		setCartItems((prevItems) => {
 			const newItems = new Map(prevItems);
 			cartItem.quantity <= 0
-				? newItems.delete(cartItem.id)
-				: newItems.set(cartItem.id, { ...cartItem, quantity });
+				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
+				: newItems.set(`${cartItem.size}.${cartItem.id}`, { ...cartItem, quantity });
 			return newItems;
 		});
 	};
@@ -23,7 +23,7 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 	const removeItem = () =>
 		setCartItems((prevItems) => {
 			const newItems = new Map(prevItems);
-			newItems.delete(cartItem.id);
+			newItems.delete(`${cartItem.size}.${cartItem.id}`);
 			return newItems;
 		});
 
@@ -42,7 +42,7 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 				<ul className='flex flex-col gap-y-1 font-semibold'>
 					<li className='font-secondary text-xl'>{cartItem.name}</li>
 					<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
-					<li className='text-gray-400'>Size: L</li>
+					<li className='text-gray-400'>Size: {cartItem.size}</li>
 					<li className='space-x-2'>
 						<span>Price:</span>
 						<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>

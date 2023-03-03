@@ -1,10 +1,17 @@
+import { TCategory } from '@/common/types';
 import ProductCard from '@/components/common/ProductCard';
 import PRODUCTS from '@/mocks/products';
+import { capitalize } from '@/utils';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import FilterSidebar from './FilterSidebar';
 
 interface IProps {
-	params: { category: string };
+	params: { category: TCategory };
+}
+
+export function generateMetadata({ params }: IProps): Metadata {
+	return { title: `${capitalize(params.category)}` };
 }
 
 export default function page({ params }: IProps) {

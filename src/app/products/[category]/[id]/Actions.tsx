@@ -1,8 +1,9 @@
 'use client';
 
 import { IProduct } from '@/common/interfaces';
+import { TSize } from '@/common/types';
 import { cartItemsState } from '@/recoil/atoms';
-import { getDiscountedValue } from '@/utils';
+import { getDiscountedValue, tw } from '@/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -12,18 +13,24 @@ export default function Actions({ product }: { product: IProduct }) {
 	const discountedPrice = getDiscountedValue(product.price, product.discount).toFixed(2);
 
 	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
-	const [quantity, setQuantity] = useState(cartItems.get(product.id)?.quantity ?? 0);
+	const [size, setSize] = useState<TSize>('M');
+	const [quantity, setQuantity] = useState(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0);
 
 	const handleAddToCart = () =>
 		setCartItems((prev) => {
 			const newItems = new Map(prev);
-			newItems.set(product.id, { ...product, quantity });
+			newItems.set(`${size}.${product.id}`, { ...product, quantity, size });
 			return newItems;
 		});
 
 	useEffect(() => {
-		setQuantity(cartItems.get(product.id)?.quantity ?? 0);
-	}, [cartItems, product.id]);
+		setQuantity(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0);
+	}, [cartItems, product.id, size]);
+
+	const sizeButtonClasses = (btnSize: TSize) =>
+		btnSize === size
+			? tw`bg-black text-white dark:text-black dark:bg-white`
+			: tw`hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black`;
 
 	return (
 		<div className='space-y-3 px-5'>
@@ -66,16 +73,36 @@ export default function Actions({ product }: { product: IProduct }) {
 			<div className='space-y-1'>
 				<span className='font-semibold'>Size:</span>
 				<div className='space-x-3 text-lg font-semibold'>
-					<button className='h-10 w-10 rounded border border-black duration-300 hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'>
+					<button
+						onClick={() => setSize('S')}
+						className={`${sizeButtonClasses(
+							'S'
+						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+					>
 						S
 					</button>
-					<button className='h-10 w-10 rounded border border-black hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'>
+					<button
+						onClick={() => setSize('M')}
+						className={`${sizeButtonClasses(
+							'M'
+						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+					>
 						M
 					</button>
-					<button className='h-10 w-10 rounded border border-black hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'>
+					<button
+						onClick={() => setSize('L')}
+						className={`${sizeButtonClasses(
+							'L'
+						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+					>
 						L
 					</button>
-					<button className='h-10 w-10 rounded border border-black hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'>
+					<button
+						onClick={() => setSize('XL')}
+						className={`${sizeButtonClasses(
+							'XL'
+						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+					>
 						XL
 					</button>
 				</div>

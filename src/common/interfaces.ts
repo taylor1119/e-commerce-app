@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image';
-import { TCategory } from './types';
+import { TCategory, TSize } from './types';
 
 export interface IProduct {
 	id: number;
@@ -19,4 +19,5 @@ export interface IProduct {
 
 export interface ICartItem extends IProduct {
 	quantity: number;
+	size: TSize;
 }

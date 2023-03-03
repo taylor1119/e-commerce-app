@@ -23,8 +23,8 @@ export default function ShoppingCart() {
 		setCartItems((prevItems) => {
 			const newItems = new Map(prevItems);
 			cartItem.quantity <= 0
-				? newItems.delete(cartItem.id)
-				: newItems.set(cartItem.id, { ...cartItem, quantity });
+				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
+				: newItems.set(`${cartItem.size}.${cartItem.id}`, { ...cartItem, quantity });
 			return newItems;
 		});
 	};
@@ -102,7 +102,7 @@ export default function ShoppingCart() {
 								<ul className='flex flex-col'>
 									<li className='font-semibold'>{cartItem.name}</li>
 									<li className='text-gray-400 capitalize'>Color: {cartItem.color}</li>
-									<li className='text-gray-400'>Size: L</li>
+									<li className='text-gray-400'>Size: {cartItem.size}</li>
 									<li className='mt-auto space-x-1'>
 										<span>Price:</span>
 										<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
