@@ -1,20 +1,18 @@
 'use client';
 
 import { ICartItem } from '@/common/interfaces';
-import { cartItemsState, shippingPlanState, shoppingCartOpenState } from '@/recoil/atoms';
-import { cartStatsState } from '@/recoil/selectors';
+import { cartItemsState, shoppingCartOpenState } from '@/recoil/atoms';
 import { getDiscountedValue } from '@/utils';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import CostDetails from './common/CostDetails';
 
 //TODO use dialog headless comp to get keyboard shortcuts
 export default function ShoppingCart() {
 	const [sidebarOpen, setSidebarOpen] = useRecoilState(shoppingCartOpenState);
-	const [shippingPlan, setShippingPlan] = useRecoilState(shippingPlanState);
-	const cartStats = useRecoilValue(cartStatsState);
 	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
 
 	const closeSidebar = () => setSidebarOpen(false);
@@ -119,61 +117,7 @@ export default function ShoppingCart() {
 					</ul>
 					{/*TODO revert color on hover */}
 					<div className='mt-auto space-y-3 border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
-						<div className='flex justify-between rounded border bg-white p-2 dark:bg-dark'>
-							<input
-								type='text'
-								placeholder='Coupon'
-								className='w-40 bg-transparent outline-none'
-							/>
-							<button className='rounded bg-slate-500 px-5 py-1 text-white'>Apply</button>
-						</div>
-						<div className='divide-y px-2'>
-							<ul className='space-y-1 pb-3 text-gray-400'>
-								<li className='flex justify-between'>
-									<span>Sub-Total</span>
-									<span>{cartStats.subTotal}</span>
-								</li>
-								<li className='space-y-1'>
-									<span>Shipping</span>
-									<ul className='ml-10'>
-										<li className='flex justify-between'>
-											<span className='flex items-center gap-x-1'>
-												<input
-													type='radio'
-													name='shipping'
-													value='free'
-													checked={shippingPlan === 'free'}
-													onClick={() => setShippingPlan('free')}
-												/>
-												<label>Free</label>
-											</span>
-											<span>$0</span>
-										</li>
-										<li className='flex justify-between'>
-											<span className='flex items-center gap-x-1'>
-												<input
-													type='radio'
-													name='shipping'
-													value='express'
-													checked={shippingPlan === 'express'}
-													onClick={() => setShippingPlan('express')}
-												/>
-												<label>Express</label>
-											</span>
-											<span>$30</span>
-										</li>
-									</ul>
-								</li>
-								<li className='flex justify-between'>
-									<span>Discount</span>
-									<span>-${cartStats.totalDiscount}</span>
-								</li>
-							</ul>
-							<span className='flex justify-between pt-3 font-semibold'>
-								<span>Total</span>
-								<span>${cartStats.totalPrice}</span>
-							</span>
-						</div>
+						<CostDetails />
 						<div className='space-y-3 font-semibold'>
 							<Link
 								href='/checkout'
