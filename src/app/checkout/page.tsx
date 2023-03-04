@@ -19,7 +19,7 @@ export default function page() {
 					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>Checkout</span>
 				</div>
 				<h1 className='my-10 text-center font-secondary text-5xl'>Checkout</h1>
-				<div className='flex justify-center flex-wrap'>
+				<div className='flex flex-wrap justify-center'>
 					<CheckoutForm />
 					<div className='grow'>
 						<OrderSummary />

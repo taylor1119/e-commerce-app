@@ -65,7 +65,7 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 					>
 						-
 					</button>
-					<span className='h-8 w-8 bg-gray-200 flex items-center justify-center'>
+					<span className='flex h-8 w-8 items-center justify-center bg-gray-200'>
 						{cartItem.quantity}
 					</span>
 					<button onClick={() => handleChangeQuantity(cartItem.quantity + 1)} className='h-8 w-8'>

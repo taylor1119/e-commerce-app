@@ -63,7 +63,7 @@ export default function Actions({ product }: { product: IProduct }) {
 						<li key={index}>
 							<Link
 								href={`/products/${product.category}/${id}`}
-								className={`h-10 w-10 block rounded-full border-2 ${color} duration-300 hover:shadow-[inset_0_0_0_4px_white]`}
+								className={`block h-10 w-10 rounded-full border-2 ${color} duration-300 hover:shadow-[inset_0_0_0_4px_white]`}
 							></Link>
 						</li>
 					))}
@@ -77,7 +77,7 @@ export default function Actions({ product }: { product: IProduct }) {
 						onClick={() => setSize('S')}
 						className={`${sizeButtonClasses(
 							'S'
-						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
 					>
 						S
 					</button>
@@ -85,7 +85,7 @@ export default function Actions({ product }: { product: IProduct }) {
 						onClick={() => setSize('M')}
 						className={`${sizeButtonClasses(
 							'M'
-						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
 					>
 						M
 					</button>
@@ -93,7 +93,7 @@ export default function Actions({ product }: { product: IProduct }) {
 						onClick={() => setSize('L')}
 						className={`${sizeButtonClasses(
 							'L'
-						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
 					>
 						L
 					</button>
@@ -101,7 +101,7 @@ export default function Actions({ product }: { product: IProduct }) {
 						onClick={() => setSize('XL')}
 						className={`${sizeButtonClasses(
 							'XL'
-						)} h-10 w-10 rounded border duration-300 border-black dark:border-white`}
+						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
 					>
 						XL
 					</button>
@@ -124,7 +124,7 @@ export default function Actions({ product }: { product: IProduct }) {
 					>
 						-
 					</button>
-					<span className='h-10 w-10 bg-gray-200 flex items-center justify-center'>{quantity}</span>
+					<span className='flex h-10 w-10 items-center justify-center bg-gray-200'>{quantity}</span>
 					<button
 						onClick={() => setQuantity((prev) => prev + 1)}
 						className='h-10 w-10 rounded-r bg-gray-200'
@@ -134,7 +134,7 @@ export default function Actions({ product }: { product: IProduct }) {
 				</div>
 				<button
 					onClick={handleAddToCart}
-					className='h-10 flex-grow rounded border-2 font-semibold align-middle'
+					className='h-10 flex-grow rounded border-2 align-middle font-semibold'
 				>
 					ADD TO CART
 				</button>

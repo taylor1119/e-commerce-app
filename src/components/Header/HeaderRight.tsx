@@ -6,8 +6,8 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default function HeaderRight() {
 	const SearchBarOpen = useSetRecoilState(searchBarOpenState);
-	const openShoppingCart = () => setShoppingCartOpen(true);
 	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState);
+	const openShoppingCart = () => setShoppingCartOpen(true);
 	const cartStats = useRecoilValue(cartStatsState);
 
 	return (

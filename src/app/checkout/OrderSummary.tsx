@@ -16,14 +16,14 @@ function OrderItem({ cartItem }: { cartItem: ICartItem }) {
 					placeholder='blur'
 					className='h-36 w-auto rounded'
 				/>
-				<span className='absolute -top-3 -right-3 h-6 w-6 bg-teal-400 rounded-full flex justify-center items-center text-white'>
+				<span className='absolute -top-3 -right-3 flex h-6 w-6 items-center justify-center rounded-full bg-teal-400 text-white'>
 					{cartItem.quantity}
 				</span>
 			</div>
 
 			<ul className='flex flex-col'>
 				<li className='font-semibold'>{cartItem.name}</li>
-				<li className='text-gray-400 capitalize'>Color: {cartItem.color}</li>
+				<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
 				<li className='text-gray-400'>Size: {cartItem.size}</li>
 				<li className='mt-auto space-x-1'>
 					<span>Price:</span>
@@ -44,7 +44,7 @@ export default function OrderSummary() {
 	const cartItems = useRecoilValue(cartItemsState);
 
 	return (
-		<section className='border border-gray-50 bg-gray-100 dark:border-slate-800 dark:bg-slate-900 p-5'>
+		<section className='border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
 			<ul className='space-y-5'>
 				{Array.from(cartItems.values()).map((cartItem, index) => (
 					<OrderItem key={index} cartItem={cartItem} />

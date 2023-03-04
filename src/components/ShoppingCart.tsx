@@ -81,7 +81,7 @@ export default function ShoppingCart() {
 									>
 										-
 									</button>
-									<span className='h-8 w-8 bg-gray-200 flex items-center justify-center'>
+									<span className='flex h-8 w-8 items-center justify-center bg-gray-200'>
 										{cartItem.quantity}
 									</span>
 									<button
@@ -99,7 +99,7 @@ export default function ShoppingCart() {
 								/>
 								<ul className='flex flex-col'>
 									<li className='font-semibold'>{cartItem.name}</li>
-									<li className='text-gray-400 capitalize'>Color: {cartItem.color}</li>
+									<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
 									<li className='text-gray-400'>Size: {cartItem.size}</li>
 									<li className='mt-auto space-x-1'>
 										<span>Price:</span>

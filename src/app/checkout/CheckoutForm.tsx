@@ -3,11 +3,11 @@ import COUNTRY_LIST from '@/constants/countries';
 export default function CheckoutForm() {
 	return (
 		//TODO remove w-screen later
-		<div className='px-5 py-5 sm:px-14 space-y-8 grow'>
-			<h1 className='text-4xl font-secondary'>Billing Details</h1>
+		<div className='grow space-y-8 px-5 py-5 sm:px-14'>
+			<h1 className='font-secondary text-4xl'>Billing Details</h1>
 			<div className='space-y-5'>
 				<div className='flex gap-x-8'>
-					<div className='space-y-2 w-full'>
+					<div className='w-full space-y-2'>
 						<label className='block' htmlFor='first-name'>
 							First Name *
 						</label>
@@ -16,10 +16,10 @@ export default function CheckoutForm() {
 							name='first-name'
 							id='first-name'
 							placeholder='First Name'
-							className='w-full border-2 rounded h-10 px-3'
+							className='h-10 w-full rounded border-2 px-3'
 						/>
 					</div>
-					<div className='space-y-2 w-full'>
+					<div className='w-full space-y-2'>
 						<label className='block' htmlFor='last-name'>
 							Last Name *
 						</label>
@@ -28,7 +28,7 @@ export default function CheckoutForm() {
 							name='last-name'
 							id='last-name'
 							placeholder='First Name'
-							className='w-full border-2 rounded h-10 px-3'
+							className='h-10 w-full rounded border-2 px-3'
 						/>
 					</div>
 				</div>
@@ -41,7 +41,7 @@ export default function CheckoutForm() {
 						name='company-name'
 						id='company-name'
 						placeholder='Company Name'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 					/>
 				</div>
 				<div className='space-y-2'>
@@ -51,7 +51,7 @@ export default function CheckoutForm() {
 					<select
 						name='country-region'
 						id='country-region'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 						defaultValue='Algeria'
 					>
 						{COUNTRY_LIST.map((country, index) => (
@@ -70,7 +70,7 @@ export default function CheckoutForm() {
 						name='street-address'
 						id='street-address'
 						placeholder='Street Address'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 					/>
 				</div>
 				<div className='space-y-2'>
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
 						name='apartment'
 						id='apartment'
 						placeholder='Apartment (Optional)'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 					/>
 				</div>
 				<div className='space-y-2'>
@@ -91,7 +91,7 @@ export default function CheckoutForm() {
 						name='town-city'
 						id='town-city'
 						placeholder='Town / City'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 					/>
 				</div>
 				<div className='space-y-2'>
@@ -103,11 +103,11 @@ export default function CheckoutForm() {
 						name='zip-code'
 						id='zip-code'
 						placeholder='Town / City'
-						className='w-full border-2 rounded h-10 px-3'
+						className='h-10 w-full rounded border-2 px-3'
 					/>
 				</div>
 				<div className='flex gap-x-8'>
-					<div className='space-y-2 w-full'>
+					<div className='w-full space-y-2'>
 						<label className='block' htmlFor='phone'>
 							Phone *
 						</label>
@@ -116,10 +116,10 @@ export default function CheckoutForm() {
 							name='phone'
 							id='phone'
 							placeholder='Phone'
-							className='w-full border-2 rounded h-10 px-3'
+							className='h-10 w-full rounded border-2 px-3'
 						/>
 					</div>
-					<div className='space-y-2 w-full'>
+					<div className='w-full space-y-2'>
 						<label className='block' htmlFor='email'>
 							Email *
 						</label>
@@ -128,7 +128,7 @@ export default function CheckoutForm() {
 							name='email'
 							id='email'
 							placeholder='Email'
-							className='w-full border-2 rounded h-10 px-3'
+							className='h-10 w-full rounded border-2 px-3'
 						/>
 					</div>
 				</div>

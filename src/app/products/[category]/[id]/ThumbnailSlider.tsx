@@ -69,7 +69,7 @@ export default function ThumbnailSlider({ product }: { product: IProduct }) {
 		currentSlide === index ? tw`opacity-100` : tw`opacity-60`;
 
 	return (
-		<div className='flex flex-row-reverse justify-center gap-x-3 '>
+		<div className='flex flex-row-reverse justify-center gap-x-3'>
 			<div className='relative'>
 				<ul ref={sliderRef} className='flex w-screen overflow-hidden sm:w-[450px]'>
 					{[...Array(SLIDES_NUMBER)].map((_, index) => (
@@ -79,7 +79,7 @@ export default function ThumbnailSlider({ product }: { product: IProduct }) {
 								alt='product image'
 								quality={100}
 								placeholder='blur'
-								className='rounded w-screen h-auto sm:h-[600px] sm:w-[450px]'
+								className='h-auto w-screen rounded sm:h-[600px] sm:w-[450px]'
 							/>
 						</li>
 					))}
