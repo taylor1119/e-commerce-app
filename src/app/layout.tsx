@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import SearchBar from '@/components/Header/SearchBar';
+import MobileNavbar from '@/components/MobileNavbar';
 import ShoppingCart from '@/components/ShoppingCart';
 import Sidebar from '@/components/Sidebar';
 import ThemeButton from '@/components/ThemeButton';
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<ShoppingCart />
 						{children}
 						<Footer />
+						<MobileNavbar />
 						<ThemeButton />
 					</RecoilProvider>
 				</NextThemeProvider>

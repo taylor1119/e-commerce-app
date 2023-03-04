@@ -5,24 +5,24 @@ import { useEffect, useState } from 'react';
 
 export default function ThemeButton() {
 	const { setTheme, theme } = useTheme();
-	const [themeIcon, setThemeInfo] = useState('ri-computer-line');
+	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
 
 	useEffect(() => {
 		switch (theme) {
 			case 'light':
-				setThemeInfo('ri-sun-fill');
+				setThemeIcon('ri-sun-fill');
 				break;
 			case 'dark':
-				setThemeInfo('ri-moon-line');
+				setThemeIcon('ri-moon-line');
 				break;
 			default:
-				setThemeInfo('ri-computer-line');
+				setThemeIcon('ri-computer-line');
 				break;
 		}
 	}, [setTheme, theme]);
 
 	return (
-		<div className='group fixed bottom-2 right-2 flex h-10 w-10 items-center justify-center rounded-full bg-teal-400 text-xl text-white'>
+		<div className='group fixed bottom-2 right-2 hidden h-10 w-10 items-center justify-center rounded-full bg-teal-400 text-xl text-white sm:flex'>
 			<i className={themeIcon} />
 			<ul className='invisible fixed right-14 flex flex-row-reverse gap-2 opacity-0 duration-300 group-hover:visible group-hover:opacity-100'>
 				<li
