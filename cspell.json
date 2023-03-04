@@ -13,7 +13,8 @@
 		"tailwindcss",
 		"Versace",
 		"Baatchia",
+		"tsbuildinfo",
 		"pnpm"
 	],
-	"ignorePaths": ["pnpm-lock.yaml"]
+	"ignorePaths": ["pnpm-lock.yaml", "*.tsbuildinfo"]
 }

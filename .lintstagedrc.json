@@ -1,7 +1,0 @@
-{
-	"*": [
-		"prettier --write --ignore-unknown",
-		"cspell --show-suggestions --relative --no-must-find-files"
-	],
-	"*.{js,ts,jsx,tsx}": "eslint --fix --max-warnings 0"
-}
