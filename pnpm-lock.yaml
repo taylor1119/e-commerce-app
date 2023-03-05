@@ -827,6 +827,7 @@ packages:
       {
         integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==,
       }
+    dev: false
 
   /@rushstack/eslint-patch/1.2.0:
     resolution:
@@ -1856,6 +1857,7 @@ packages:
       {
         integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==,
       }
+    dev: false
 
   /electron-to-chromium/1.4.316:
     resolution:
@@ -3392,6 +3394,7 @@ packages:
         integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==,
       }
     engines: { node: '>=10' }
+    dev: false
 
   /ms/2.1.2:
     resolution:
@@ -4593,6 +4596,7 @@ packages:
         integrity: sha512-gduQwd1rOdDMGxFG1gEvhV88Oirdo2p+KjoYFU7k2g+i7n6AFFbDQ5kMPUsW0pNbfQsB/cwXvT1i4Bue0s9g5g==,
       }
     engines: { node: '>=6' }
+    dev: false
 
   /tr46/0.0.3:
     resolution:
