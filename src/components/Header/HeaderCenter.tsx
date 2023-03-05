@@ -5,14 +5,7 @@ export default function HeaderCenter() {
 	return (
 		<nav className='flex items-center font-semibold'>
 			<ul className='hidden w-60 items-center justify-end gap-4 uppercase md:flex'>
-				<li className='group/products'>
-					<div className='flex cursor-pointer gap-1 py-7'>
-						<span>Products</span>
-						<i className='ri-arrow-down-s-line' />
-					</div>
-
-					<ProductsMenu />
-				</li>
+				<ProductsMenu />
 				<li>
 					<Link href='/not-implemented'>
 						<span>Discounts</span>
