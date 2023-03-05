@@ -5,6 +5,7 @@ import { cartItemsState } from '@/recoil/atoms';
 import { getDiscountedValue } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 function CartItem({ cartItem }: { cartItem: ICartItem }) {
@@ -91,14 +92,19 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 
 export default function CartItems() {
 	const cartItems = useRecoilValue(cartItemsState);
+	const [showCartItems, setShowCartItems] = useState(false);
+	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size]);
+
 	return (
 		<div>
 			<h1 className='my-10 text-center font-secondary text-5xl'>Cart</h1>
-			<ul className='flex flex-wrap justify-center gap-5'>
-				{Array.from(cartItems.values()).map((cartItem, index) => (
-					<CartItem key={index} cartItem={cartItem} />
-				))}
-			</ul>
+			{showCartItems && (
+				<ul className='flex flex-wrap justify-center gap-5'>
+					{Array.from(cartItems.values()).map((cartItem, index) => (
+						<CartItem key={index} cartItem={cartItem} />
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }

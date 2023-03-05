@@ -14,7 +14,7 @@ export default function Actions({ product }: { product: IProduct }) {
 
 	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
 	const [size, setSize] = useState<TSize>('M');
-	const [quantity, setQuantity] = useState(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0);
+	const [quantity, setQuantity] = useState(0);
 
 	const handleAddToCart = () =>
 		setCartItems((prev) => {

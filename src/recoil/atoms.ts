@@ -1,5 +1,5 @@
 import { IProduct } from '@/common/interfaces';
-import { TCartItems } from '@/common/types';
+import { TCartItems, TShippingPlan } from '@/common/types';
 import { atom } from 'recoil';
 import { cartItemsPersistEffect } from './effects';
 
@@ -18,13 +18,13 @@ export const shoppingCartOpenState = atom({
 	default: false,
 });
 
-export const shippingPlanState = atom<'free' | 'express'>({
-	key: 'shippingPlan',
+export const shippingPlanState = atom<TShippingPlan>({
+	key: 'ShippingPlan',
 	default: 'free',
 });
 
 export const cartItemsState = atom<TCartItems>({
-	key: 'cartItems',
+	key: 'CartItems',
 	default: new Map(),
 	effects: [cartItemsPersistEffect],
 });

@@ -1,12 +1,23 @@
 'use client';
 
+import { ICartStats } from '@/common/interfaces';
+import { TShippingPlan } from '@/common/types';
 import { shippingPlanState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function CostDetails() {
 	const cartStats = useRecoilValue(cartStatsState);
 	const [shippingPlan, setShippingPlan] = useRecoilState(shippingPlanState);
+	const [{ subTotal, totalDiscount, totalPrice }, setCartStats] = useState<ICartStats>({
+		itemsNumber: 0,
+		subTotal: 0,
+		totalDiscount: 0,
+		totalPrice: 0,
+	});
+
+	useEffect(() => setCartStats(cartStats), [cartStats]);
 
 	return (
 		<>
@@ -18,7 +29,7 @@ export default function CostDetails() {
 				<ul className='space-y-1 pb-5 text-gray-400'>
 					<li className='flex justify-between'>
 						<span>Sub-Total</span>
-						<span>${cartStats.subTotal.toFixed(2)}</span>
+						<span>${subTotal.toFixed(2)}</span>
 					</li>
 					<li className='space-y-1'>
 						<span>Shipping</span>
@@ -30,7 +41,7 @@ export default function CostDetails() {
 										name='free'
 										value='free'
 										checked={shippingPlan === 'free'}
-										onClick={() => setShippingPlan('free')}
+										onChange={(e) => setShippingPlan(e.target.value as TShippingPlan)}
 									/>
 									<label>Free</label>
 								</span>
@@ -43,7 +54,7 @@ export default function CostDetails() {
 										name='express'
 										value='express'
 										checked={shippingPlan === 'express'}
-										onClick={() => setShippingPlan('express')}
+										onChange={(e) => setShippingPlan(e.target.value as TShippingPlan)}
 									/>
 									<label>Express</label>
 								</span>
@@ -53,12 +64,12 @@ export default function CostDetails() {
 					</li>
 					<li className='flex justify-between'>
 						<span>Discount</span>
-						<span>{cartStats.totalDiscount}</span>
+						<span>{totalDiscount}</span>
 					</li>
 				</ul>
 				<span className='flex justify-between pt-5 font-semibold'>
 					<span>Total</span>
-					<span>${cartStats.totalPrice.toFixed(2)}</span>
+					<span>${totalPrice.toFixed(2)}</span>
 				</span>
 			</div>
 		</>

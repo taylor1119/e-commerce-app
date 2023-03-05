@@ -1,11 +1,12 @@
+import { ICartStats } from '@/common/interfaces';
 import { getDiscountedValue } from '@/utils';
 import { selector } from 'recoil';
 import { cartItemsState, shippingPlanState } from './atoms';
 
 const EXPRESS_SHIPPING_COST = 30;
 
-export const cartStatsState = selector({
-	key: 'cartStatsStateState',
+export const cartStatsState = selector<ICartStats>({
+	key: 'CartStats',
 	get: ({ get }) => {
 		const cartItems = get(cartItemsState);
 		const shippingPlan = get(shippingPlanState);

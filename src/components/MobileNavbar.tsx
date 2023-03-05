@@ -9,7 +9,9 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default function MobileNavbar() {
 	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState);
-	const cartStats = useRecoilValue(cartStatsState);
+	const { itemsNumber } = useRecoilValue(cartStatsState);
+	const [showItemsNumber, setShowItemsNumber] = useState(false);
+	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber]);
 
 	const { setTheme, theme } = useTheme();
 	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
@@ -48,9 +50,11 @@ export default function MobileNavbar() {
 				</li>
 				<li onClick={() => setShoppingCartOpen(true)} className='relative cursor-pointer'>
 					<i className='ri-shopping-bag-2-line'></i>
-					<span className='absolute left-3 bottom-5 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
-						{cartStats.itemsNumber}
-					</span>
+					{showItemsNumber && (
+						<span className='absolute left-3 bottom-5 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+							{itemsNumber}
+						</span>
+					)}
 				</li>
 				<li className='group relative cursor-pointer'>
 					<i className={themeIcon}></i>

@@ -6,7 +6,7 @@ import { getDiscountedValue } from '@/utils';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import CostDetails from './common/CostDetails';
 
@@ -14,6 +14,8 @@ import CostDetails from './common/CostDetails';
 export default function ShoppingCart() {
 	const [sidebarOpen, setSidebarOpen] = useRecoilState(shoppingCartOpenState);
 	const [cartItems, setCartItems] = useRecoilState(cartItemsState);
+	const [showCartItems, setShowCartItems] = useState(false);
+	useEffect(() => setShowCartItems(Boolean(cartItems.size)), [cartItems.size]);
 
 	const closeSidebar = () => setSidebarOpen(false);
 
@@ -70,51 +72,53 @@ export default function ShoppingCart() {
 			>
 				<aside className='fixed top-0 right-0 z-30 flex h-screen w-80 flex-col gap-y-5 overflow-y-auto bg-white text-base shadow-lg dark:bg-dark'>
 					<h3 className='px-5 pt-5 font-secondary text-3xl'>Shopping Cart</h3>
-					<ul className='space-y-3 overflow-auto pl-5'>
-						{Array.from(cartItems.values()).map((cartItem, index) => (
-							<li key={index} className='flex gap-x-3 text-sm'>
-								<div className='flex flex-col items-center text-lg text-black'>
-									<button
-										disabled={cartItem.quantity <= 0}
-										onClick={() => handleChangeQuantity(cartItem, cartItem.quantity - 1)}
-										className='h-8 w-8 rounded-t bg-gray-200'
-									>
-										-
-									</button>
-									<span className='flex h-8 w-8 items-center justify-center bg-gray-200'>
-										{cartItem.quantity}
-									</span>
-									<button
-										onClick={() => handleChangeQuantity(cartItem, cartItem.quantity + 1)}
-										className='h-8 w-8 rounded-b bg-gray-200'
-									>
-										+
-									</button>
-								</div>
-								<Image
-									src={cartItem.image}
-									alt='product image'
-									placeholder='blur'
-									className='h-24 w-auto rounded'
-								/>
-								<ul className='flex flex-col'>
-									<li className='font-semibold'>{cartItem.name}</li>
-									<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
-									<li className='text-gray-400'>Size: {cartItem.size}</li>
-									<li className='mt-auto space-x-1'>
-										<span>Price:</span>
-										<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
-											${cartItem.price.toFixed(2)}
+					{showCartItems && (
+						<ul className='space-y-3 overflow-auto pl-5'>
+							{Array.from(cartItems.values()).map((cartItem, index) => (
+								<li key={index} className='flex gap-x-3 text-sm'>
+									<div className='flex flex-col items-center text-lg text-black'>
+										<button
+											disabled={cartItem.quantity <= 0}
+											onClick={() => handleChangeQuantity(cartItem, cartItem.quantity - 1)}
+											className='h-8 w-8 rounded-t bg-gray-200'
+										>
+											-
+										</button>
+										<span className='flex h-8 w-8 items-center justify-center bg-gray-200'>
+											{cartItem.quantity}
 										</span>
-										<span>
-											{Boolean(cartItem.discount) &&
-												'$' + getDiscountedValue(cartItem.price, cartItem.discount).toFixed(2)}
-										</span>
-									</li>
-								</ul>
-							</li>
-						))}
-					</ul>
+										<button
+											onClick={() => handleChangeQuantity(cartItem, cartItem.quantity + 1)}
+											className='h-8 w-8 rounded-b bg-gray-200'
+										>
+											+
+										</button>
+									</div>
+									<Image
+										src={cartItem.image}
+										alt='product image'
+										placeholder='blur'
+										className='h-24 w-auto rounded'
+									/>
+									<ul className='flex flex-col'>
+										<li className='font-semibold'>{cartItem.name}</li>
+										<li className='capitalize text-gray-400'>Color: {cartItem.color}</li>
+										<li className='text-gray-400'>Size: {cartItem.size}</li>
+										<li className='mt-auto space-x-1'>
+											<span>Price:</span>
+											<span className={cartItem.discount ? 'text-gray-400 line-through' : ''}>
+												${cartItem.price.toFixed(2)}
+											</span>
+											<span>
+												{Boolean(cartItem.discount) &&
+													'$' + getDiscountedValue(cartItem.price, cartItem.discount).toFixed(2)}
+											</span>
+										</li>
+									</ul>
+								</li>
+							))}
+						</ul>
+					)}
 					{/*TODO revert color on hover */}
 					<div className='mt-auto space-y-3 border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
 						<CostDetails />

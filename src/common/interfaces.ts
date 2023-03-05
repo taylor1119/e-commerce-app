@@ -21,3 +21,10 @@ export interface ICartItem extends IProduct {
 	quantity: number;
 	size: TSize;
 }
+
+export interface ICartStats {
+	itemsNumber: number;
+	subTotal: number;
+	totalPrice: number;
+	totalDiscount: number;
+}
