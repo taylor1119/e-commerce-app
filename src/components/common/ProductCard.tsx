@@ -29,12 +29,9 @@ export default function ProductCard({ product }: IProductCardProps) {
 
 				<ul className='absolute bottom-5 z-20 flex w-full translate-y-5 justify-center gap-4 text-lg opacity-0 duration-300 group-hover:translate-y-0 group-hover:opacity-100'>
 					<li>
-						<Link
-							href='/not-implemented'
-							className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black duration-300 hover:bg-black hover:text-white'
-						>
+						<span className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black duration-300 hover:bg-black hover:text-white'>
 							<i className='ri-arrow-left-right-fill' />
-						</Link>
+						</span>
 					</li>
 					<li>
 						<Link
@@ -45,12 +42,9 @@ export default function ProductCard({ product }: IProductCardProps) {
 						</Link>
 					</li>
 					<li>
-						<Link
-							href='/not-implemented'
-							className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black duration-300 hover:bg-black hover:text-white'
-						>
+						<span className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black duration-300 hover:bg-black hover:text-white'>
 							<i className='ri-star-line' />
-						</Link>
+						</span>
 					</li>
 				</ul>
 

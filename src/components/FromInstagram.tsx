@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 const INSTAGRAM_PHOTOS = [
 	'/images/ig_01.jpg',
@@ -17,14 +16,9 @@ export default function FromInstagram() {
 				{INSTAGRAM_PHOTOS.map((photo, index) => (
 					<li className='group relative shrink-0 snap-center xl:shrink' key={index}>
 						<Image width={320} height={320} alt='instagram photo' src={photo} quality={100} />
-						<div className='absolute bottom-5 z-20 flex w-full translate-y-5 justify-center gap-4 text-lg opacity-0 duration-300 group-hover:translate-y-0 group-hover:opacity-100'>
-							<Link
-								href='/not-implemented'
-								className='flex h-10 w-10 items-center justify-center rounded-full bg-white text-black duration-300 hover:bg-black hover:text-white'
-							>
-								<i className='ri-instagram-fill' />
-							</Link>
-						</div>
+						<span className='absolute bottom-0 right-1/2 z-10 flex h-10 w-10 translate-x-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-lg text-black opacity-0 duration-300 hover:bg-black hover:text-white group-hover:-translate-y-5 group-hover:opacity-100'>
+							<i className='ri-instagram-fill' />
+						</span>
 					</li>
 				))}
 			</ul>

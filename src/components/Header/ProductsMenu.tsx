@@ -21,10 +21,10 @@ export default function ProductsMenu() {
 			onMouseEnter={() => setShowProductMenu(true)}
 			onMouseLeave={() => setShowProductMenu(false)}
 		>
-			<div className='flex cursor-pointer gap-1 py-7'>
+			<Link href='/products/all' className='flex cursor-pointer gap-1 py-7'>
 				<span>Products</span>
 				<i className='ri-arrow-down-s-line' />
-			</div>
+			</Link>
 
 			<Transition
 				show={showProductMenu}
@@ -48,11 +48,12 @@ export default function ProductsMenu() {
 					<ul className='w-32 space-y-4'>
 						<li className='text-black dark:text-white'>Apparel</li>
 						{APPARELS.map((apparel, index) => (
-							<li key={index} className='hover:text-black dark:hover:text-white'>
-								<Link href='/not-implemented' className='group flex items-center gap-2'>
-									<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-									{apparel}
-								</Link>
+							<li
+								key={index}
+								className='group flex cursor-pointer items-center gap-2 hover:text-black dark:hover:text-white'
+							>
+								<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+								{apparel}
 							</li>
 						))}
 					</ul>
@@ -60,11 +61,12 @@ export default function ProductsMenu() {
 					<ul className='w-32 space-y-4'>
 						<li className='text-black dark:text-white'>Shoes</li>
 						{SHOES.map((shoe, index) => (
-							<li key={index} className='hover:text-black dark:hover:text-white'>
-								<Link href='/not-implemented' className='group flex items-center gap-2'>
-									<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-									{shoe}
-								</Link>
+							<li
+								key={index}
+								className='group flex cursor-pointer items-center gap-2 hover:text-black dark:hover:text-white'
+							>
+								<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+								{shoe}
 							</li>
 						))}
 					</ul>
@@ -72,11 +74,12 @@ export default function ProductsMenu() {
 					<ul className='w-32 space-y-4'>
 						<li className='text-black dark:text-white'>Perfumes</li>
 						{PERFUMES.map((perfume, index) => (
-							<li key={index} className='hover:text-black dark:hover:text-white'>
-								<Link href='/not-implemented' className='group flex items-center gap-2'>
-									<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-									{perfume}
-								</Link>
+							<li
+								key={index}
+								className='group flex cursor-pointer items-center gap-2 hover:text-black dark:hover:text-white'
+							>
+								<span className='-ml-4 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+								{perfume}
 							</li>
 						))}
 					</ul>

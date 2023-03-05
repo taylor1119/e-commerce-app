@@ -113,11 +113,12 @@ function FilterMenu() {
 							<ul className='space-y-3 text-gray-400'>
 								<li className='-ml-5 mt-3 text-black dark:text-white'>Apparel</li>
 								{APPARELS.map((apparel, index) => (
-									<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-										<Link href='/not-implemented' className='group flex items-center gap-2'>
-											<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-											{apparel}
-										</Link>
+									<li
+										key={index}
+										className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+									>
+										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+										{apparel}
 									</li>
 								))}
 							</ul>
@@ -125,11 +126,12 @@ function FilterMenu() {
 							<ul className='space-y-3 text-gray-400'>
 								<li className='-ml-5 text-black dark:text-white'>Shoes</li>
 								{SHOES.map((shoe, index) => (
-									<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-										<Link href='/not-implemented' className='group flex items-center gap-2'>
-											<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-											{shoe}
-										</Link>
+									<li
+										key={index}
+										className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+									>
+										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+										{shoe}
 									</li>
 								))}
 							</ul>
@@ -137,11 +139,12 @@ function FilterMenu() {
 							<ul className='space-y-3 text-gray-400'>
 								<li className='-ml-5 text-black dark:text-white'>Perfumes</li>
 								{PERFUMES.map((perfume, index) => (
-									<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-										<Link href='/not-implemented' className='group flex items-center gap-2'>
-											<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-											{perfume}
-										</Link>
+									<li
+										key={index}
+										className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+									>
+										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+										{perfume}
 									</li>
 								))}
 							</ul>
@@ -171,11 +174,12 @@ function FilterMenu() {
 					>
 						<ul className='space-y-3 pt-3 pl-5 uppercase text-gray-400'>
 							{CATEGORIES.map((category, index) => (
-								<li key={index} className='dark:hover:text-whit pl-5 text-sm hover:text-black'>
-									<Link href='/not-implemented' className='group flex items-center gap-2'>
-										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-										{category}
-									</Link>
+								<li
+									key={index}
+									className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+								>
+									<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+									{category}
 								</li>
 							))}
 						</ul>

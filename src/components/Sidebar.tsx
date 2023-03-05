@@ -109,11 +109,12 @@ export default function Sidebar() {
 									<ul className='space-y-3 text-gray-400'>
 										<li className='-ml-5 mt-3 text-black dark:text-white'>Apparel</li>
 										{APPARELS.map((apparel, index) => (
-											<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-												<Link href='/not-implemented' className='group flex items-center gap-2'>
-													<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-													{apparel}
-												</Link>
+											<li
+												key={index}
+												className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+											>
+												<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+												{apparel}
 											</li>
 										))}
 									</ul>
@@ -121,11 +122,12 @@ export default function Sidebar() {
 									<ul className='space-y-3 text-gray-400'>
 										<li className='-ml-5 text-black dark:text-white'>Shoes</li>
 										{SHOES.map((shoe, index) => (
-											<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-												<Link href='/not-implemented' className='group flex items-center gap-2'>
-													<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-													{shoe}
-												</Link>
+											<li
+												key={index}
+												className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+											>
+												<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+												{shoe}
 											</li>
 										))}
 									</ul>
@@ -133,22 +135,19 @@ export default function Sidebar() {
 									<ul className='space-y-3 text-gray-400'>
 										<li className='-ml-5 text-black dark:text-white'>Perfumes</li>
 										{PERFUMES.map((perfume, index) => (
-											<li key={index} className='text-sm hover:text-black dark:hover:text-white'>
-												<Link href='/not-implemented' className='group flex items-center gap-2'>
-													<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-													{perfume}
-												</Link>
+											<li
+												key={index}
+												className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+											>
+												<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+												{perfume}
 											</li>
 										))}
 									</ul>
 								</div>
 							</Transition>
 						</li>
-						<li>
-							<Link href='/not-implemented'>
-								<span>Discounts</span>
-							</Link>
-						</li>
+						<li className='cursor-pointer'>Discounts</li>
 						<li>
 							<div className='flex items-center justify-between gap-1'>
 								<span>Specials</span>
@@ -172,21 +171,17 @@ export default function Sidebar() {
 									{SPECIALS.map((perfume, index) => (
 										<li
 											key={index}
-											className='dark:hover:text-whit mt-3 pl-5 text-sm hover:text-black'
+											className='dark:hover:text-whit group mt-3 flex cursor-pointer items-center gap-2 pl-5 text-sm hover:text-black'
 										>
-											<Link href='/not-implemented' className='group flex items-center gap-2'>
-												<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-												{perfume}
-											</Link>
+											<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+											{perfume}
 										</li>
 									))}
 								</ul>
 							</Transition>
 						</li>
-						<li>
-							<Link href='/not-implemented'>
-								<span>Sales</span>
-							</Link>
+						<li className='cursor-pointer'>
+							<span>Sales</span>
 						</li>
 					</ul>
 					{/*TODO revert color on hover */}

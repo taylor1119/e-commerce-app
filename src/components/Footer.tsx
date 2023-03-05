@@ -91,7 +91,11 @@ export default function Footer() {
 							<ul className='w-32 space-y-3'>
 								{SERVICES.map((service, index) => (
 									<li key={index}>
-										<Link href={service.link}>{service.name}</Link>
+										{service.link !== '/not-implemented' ? (
+											<Link href={service.link}>{service.name}</Link>
+										) : (
+											<span>{service.name}</span>
+										)}
 									</li>
 								))}
 							</ul>
@@ -101,7 +105,11 @@ export default function Footer() {
 							<ul className='w-32 space-y-3'>
 								{PAGES.map((page, index) => (
 									<li key={index}>
-										<Link href={page.link}>{page.name}</Link>
+										{page.link !== '/not-implemented' ? (
+											<Link href={page.link}>{page.name}</Link>
+										) : (
+											<span>{page.name}</span>
+										)}
 									</li>
 								))}
 							</ul>
@@ -111,7 +119,11 @@ export default function Footer() {
 							<ul className='w-32 space-y-3'>
 								{CONTACTS.map((contact, index) => (
 									<li key={index}>
-										<Link href={contact.link}>{contact.name}</Link>
+										{contact.link !== '/not-implemented' ? (
+											<Link href={contact.link}>{contact.name}</Link>
+										) : (
+											<span>{contact.name}</span>
+										)}
 									</li>
 								))}
 							</ul>
