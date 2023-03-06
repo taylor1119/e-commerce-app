@@ -1,6 +1,6 @@
 'use client';
 
-import { shoppingCartOpenState } from '@/recoil/atoms';
+import { favoriteItemsState, shoppingCartOpenState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -9,9 +9,14 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default function MobileNavbar() {
 	const setShoppingCartOpen = useSetRecoilState(shoppingCartOpenState);
+
 	const { itemsNumber } = useRecoilValue(cartStatsState);
 	const [showItemsNumber, setShowItemsNumber] = useState(false);
 	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber]);
+
+	const favoriteItemsNumber = useRecoilValue(favoriteItemsState).length;
+	const [hasFavoriteItems, setHasFavoriteItems] = useState(false);
+	useEffect(() => setHasFavoriteItems(Boolean(favoriteItemsNumber)), [favoriteItemsNumber]);
 
 	const { setTheme, theme } = useTheme();
 	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
@@ -46,12 +51,19 @@ export default function MobileNavbar() {
 					<i className='ri-user-line'></i>
 				</li>
 				<li>
-					<i className='ri-star-line'></i>
+					<Link href='/favorites' className='relative'>
+						<i className='ri-star-line'></i>
+						{hasFavoriteItems && (
+							<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+								{favoriteItemsNumber}
+							</span>
+						)}
+					</Link>
 				</li>
 				<li onClick={() => setShoppingCartOpen(true)} className='relative cursor-pointer'>
 					<i className='ri-shopping-bag-2-line'></i>
 					{showItemsNumber && (
-						<span className='absolute left-3 bottom-5 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+						<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
 							{itemsNumber}
 						</span>
 					)}

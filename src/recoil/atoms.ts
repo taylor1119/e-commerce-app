@@ -1,7 +1,7 @@
 import { IProduct } from '@/common/interfaces';
 import { TCartItems, TShippingPlan } from '@/common/types';
 import { atom } from 'recoil';
-import { cartItemsPersistEffect } from './effects';
+import { cartItemsPersistEffect, persistEffect } from './effects';
 
 export const searchBarOpenState = atom({
 	key: 'SearchBarOpen',
@@ -27,4 +27,10 @@ export const cartItemsState = atom<TCartItems>({
 	key: 'CartItems',
 	default: new Map(),
 	effects: [cartItemsPersistEffect],
+});
+
+export const favoriteItemsState = atom<IProduct[]>({
+	key: 'FavoriteItems',
+	default: [],
+	effects: [persistEffect<IProduct[]>('FavoriteItems')],
 });
