@@ -11,7 +11,7 @@ export default function ReviewFormDialog() {
 			<button
 				type='button'
 				onClick={() => setIsOpen(true)}
-				className='rounded border border-black px-6 duration-300 hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'
+				className='h-12 rounded border border-black px-6 duration-300 hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black'
 			>
 				WRITE A REVIEW
 			</button>

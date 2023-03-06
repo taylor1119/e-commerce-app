@@ -13,7 +13,7 @@ export default function ReviewsTab() {
 	return (
 		<Tab.Panel className='animate-fade-slide space-y-5'>
 			<h3 className='font-secondary text-4xl'>Reviews</h3>
-			<div className='relative flex justify-between font-semibold'>
+			<div className='relative flex flex-wrap justify-center gap-5 font-semibold sm:justify-between'>
 				<div className='flex'>
 					<span className='text-5xl'>4.5</span>
 					<div className='before:content-[" "] relative self-stretch pl-8 before:absolute before:top-0 before:left-3 before:h-full before:w-px before:rotate-[25deg] before:bg-slate-400'>
