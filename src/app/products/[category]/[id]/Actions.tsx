@@ -86,40 +86,73 @@ export default function Actions({ product }: { product: IProduct }) {
 
 			<div className='space-y-1'>
 				<span className='font-semibold'>Size:</span>
-				<div className='space-x-3 text-lg font-semibold'>
-					<button
-						onClick={() => setSize('S')}
-						className={`${sizeButtonClasses(
-							'S'
-						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
-					>
-						S
-					</button>
-					<button
-						onClick={() => setSize('M')}
-						className={`${sizeButtonClasses(
-							'M'
-						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
-					>
-						M
-					</button>
-					<button
-						onClick={() => setSize('L')}
-						className={`${sizeButtonClasses(
-							'L'
-						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
-					>
-						L
-					</button>
-					<button
-						onClick={() => setSize('XL')}
-						className={`${sizeButtonClasses(
-							'XL'
-						)} h-10 w-10 rounded border border-black duration-300 dark:border-white`}
-					>
-						XL
-					</button>
-				</div>
+				<ul className='flex gap-x-3 text-lg font-semibold'>
+					<li>
+						<input
+							className='peer hidden'
+							type='radio'
+							name='size'
+							id='s'
+							value='S'
+							onChange={(e) => setSize(e.target.value as TSize)}
+						/>
+						<label
+							className='flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-black bg-transparent text-black duration-300 peer-checked:bg-black peer-checked:text-white dark:border-white dark:text-white dark:peer-checked:bg-white dark:peer-checked:text-black'
+							htmlFor='s'
+						>
+							S
+						</label>
+					</li>
+					<li>
+						<input
+							className='peer hidden'
+							type='radio'
+							name='size'
+							id='m'
+							value='M'
+							defaultChecked
+							onChange={(e) => setSize(e.target.value as TSize)}
+						/>
+						<label
+							className='flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-black bg-transparent text-black duration-300 peer-checked:bg-black peer-checked:text-white dark:border-white dark:text-white dark:peer-checked:bg-white dark:peer-checked:text-black'
+							htmlFor='m'
+						>
+							M
+						</label>
+					</li>
+					<li>
+						<input
+							className='peer hidden'
+							type='radio'
+							name='size'
+							id='l'
+							value='L'
+							onChange={(e) => setSize(e.target.value as TSize)}
+						/>
+						<label
+							className='flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-black bg-transparent text-black duration-300 peer-checked:bg-black peer-checked:text-white dark:border-white dark:text-white dark:peer-checked:bg-white dark:peer-checked:text-black'
+							htmlFor='l'
+						>
+							L
+						</label>
+					</li>
+					<li>
+						<input
+							className='peer hidden'
+							type='radio'
+							name='size'
+							id='xl'
+							value='XL'
+							onChange={(e) => setSize(e.target.value as TSize)}
+						/>
+						<label
+							className='flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-black bg-transparent text-black duration-300 peer-checked:bg-black peer-checked:text-white dark:border-white dark:text-white dark:peer-checked:bg-white dark:peer-checked:text-black'
+							htmlFor='xl'
+						>
+							XL
+						</label>
+					</li>
+				</ul>
 			</div>
 
 			<div className='flex items-center gap-x-3'>
