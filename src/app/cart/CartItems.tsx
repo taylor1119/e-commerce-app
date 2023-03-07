@@ -14,7 +14,7 @@ function CartItem({ cartItem }: { cartItem: ICartItem }) {
 	const handleChangeQuantity = (quantity: number) => {
 		setCartItems((prevItems) => {
 			const newItems = new Map(prevItems);
-			cartItem.quantity <= 0
+			quantity <= 0
 				? newItems.delete(`${cartItem.size}.${cartItem.id}`)
 				: newItems.set(`${cartItem.size}.${cartItem.id}`, { ...cartItem, quantity });
 			return newItems;
