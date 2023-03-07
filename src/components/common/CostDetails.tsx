@@ -5,11 +5,11 @@ import { TShippingPlan } from '@/common/types';
 import { shippingPlanState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default function CostDetails() {
 	const cartStats = useRecoilValue(cartStatsState);
-	const [shippingPlan, setShippingPlan] = useRecoilState(shippingPlanState);
+	const setShippingPlan = useSetRecoilState(shippingPlanState);
 	const [{ subTotal, totalDiscount, totalPrice }, setCartStats] = useState<ICartStats>({
 		itemsNumber: 0,
 		subTotal: 0,
@@ -38,12 +38,13 @@ export default function CostDetails() {
 								<span className='flex items-center gap-x-1'>
 									<input
 										type='radio'
-										name='free'
+										name='shipping-plan'
 										value='free'
-										checked={shippingPlan === 'free'}
+										id='free'
+										defaultChecked
 										onChange={(e) => setShippingPlan(e.target.value as TShippingPlan)}
 									/>
-									<label>Free</label>
+									<label htmlFor='free'>Free</label>
 								</span>
 								<span>-$0</span>
 							</li>
@@ -51,12 +52,12 @@ export default function CostDetails() {
 								<span className='flex items-center gap-x-1'>
 									<input
 										type='radio'
-										name='express'
+										name='shipping-plan'
 										value='express'
-										checked={shippingPlan === 'express'}
+										id='express'
 										onChange={(e) => setShippingPlan(e.target.value as TShippingPlan)}
 									/>
-									<label>Express</label>
+									<label htmlFor='express'>Express</label>
 								</span>
 								<span>$30</span>
 							</li>

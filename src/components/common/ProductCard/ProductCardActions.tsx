@@ -1,25 +1,25 @@
 'use client';
 import { IProduct } from '@/common/interfaces';
-import { favoriteItemsState } from '@/recoil/atoms';
+import { wishlistItemsState } from '@/recoil/atoms';
 import { tw } from '@/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function ProductCardActions({ product }: { product: IProduct }) {
-	const [favoriteItems, setFavoriteItems] = useRecoilState(favoriteItemsState);
-	const [isItemFavorite, setIsItemFavorite] = useState(false);
+	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState);
+	const [isItemWished, setIsItemWished] = useState(false);
 	useEffect(
-		() => setIsItemFavorite(!favoriteItems.every(({ id }) => id !== product.id)),
-		[favoriteItems, product]
+		() => setIsItemWished(!wishlistItems.every(({ id }) => id !== product.id)),
+		[wishlistItems, product]
 	);
 
-	const handleAddRemoveFavoriteItems = () =>
-		isItemFavorite
-			? setFavoriteItems((prev) => prev.filter((item) => item.id !== product.id))
-			: setFavoriteItems((prev) => [product, ...prev]);
+	const handleAddRemoveWishlistItems = () =>
+		isItemWished
+			? setWishlistItems((prev) => prev.filter((item) => item.id !== product.id))
+			: setWishlistItems((prev) => [product, ...prev]);
 
-	const favIconClasses = isItemFavorite
+	const wishlistIconClasses = isItemWished
 		? tw`bg-yellow-400 text-white`
 		: tw`bg-white text-black hover:bg-black hover:text-white`;
 
@@ -40,8 +40,8 @@ export default function ProductCardActions({ product }: { product: IProduct }) {
 			</li>
 			<li>
 				<button
-					onClick={handleAddRemoveFavoriteItems}
-					className={`${favIconClasses} flex h-10 w-10 items-center justify-center rounded-full duration-300`}
+					onClick={handleAddRemoveWishlistItems}
+					className={`${wishlistIconClasses} flex h-10 w-10 items-center justify-center rounded-full duration-300`}
 				>
 					<i className='ri-star-line' />
 				</button>

@@ -174,12 +174,14 @@ function FilterMenu() {
 					>
 						<ul className='space-y-3 pt-3 pl-5 uppercase text-gray-400'>
 							{CATEGORIES.map((category, index) => (
-								<li
-									key={index}
-									className='group flex cursor-pointer items-center gap-2 text-sm hover:text-black dark:hover:text-white'
-								>
-									<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
-									{category}
+								<li key={index}>
+									<Link
+										href={`products/${category}`}
+										className='group flex items-center gap-2 text-sm hover:text-black dark:hover:text-white'
+									>
+										<span className='-ml-5 h-2 w-2 rounded-full bg-dark opacity-0 duration-300 group-hover:opacity-100 dark:bg-white' />
+										{category}
+									</Link>
 								</li>
 							))}
 						</ul>

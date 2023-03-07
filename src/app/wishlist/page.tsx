@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import FavoriteItems from './FavoriteItems';
+import WishlistItems from './WishlistItems';
 
 export default function page() {
 	return (
@@ -9,10 +9,10 @@ export default function page() {
 				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
 					<Link href='/'>Home</Link>
 					<i className='ri-arrow-right-s-line'></i>
-					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>Favorites</span>
+					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>Wishlist</span>
 				</div>
-				<h1 className='my-10 text-center font-secondary text-5xl'>Favorites</h1>
-				<FavoriteItems />
+				<h1 className='my-10 text-center font-secondary text-5xl'>Wishlist</h1>
+				<WishlistItems />
 			</section>
 		</main>
 	);

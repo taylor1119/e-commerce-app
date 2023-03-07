@@ -29,8 +29,8 @@ export const cartItemsState = atom<TCartItems>({
 	effects: [cartItemsPersistEffect],
 });
 
-export const favoriteItemsState = atom<IProduct[]>({
-	key: 'FavoriteItems',
+export const wishlistItemsState = atom<IProduct[]>({
+	key: 'WishlistItems',
 	default: [],
-	effects: [persistEffect<IProduct[]>('FavoriteItems')],
+	effects: [persistEffect<IProduct[]>('WishlistItems')],
 });

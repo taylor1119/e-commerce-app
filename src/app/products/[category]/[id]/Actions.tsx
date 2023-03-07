@@ -2,7 +2,7 @@
 
 import { IProduct } from '@/common/interfaces';
 import { TSize } from '@/common/types';
-import { cartItemsState } from '@/recoil/atoms';
+import { cartItemsState, wishlistItemsState } from '@/recoil/atoms';
 import { getDiscountedValue, tw } from '@/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -32,9 +32,23 @@ export default function Actions({ product }: { product: IProduct }) {
 			? tw`bg-black text-white dark:text-black dark:bg-white`
 			: tw`hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black`;
 
+	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState);
+	const [isItemWished, setIsItemWished] = useState(false);
+	useEffect(
+		() => setIsItemWished(!wishlistItems.every(({ id }) => id !== product.id)),
+		[wishlistItems, product]
+	);
+
+	const handleAddRemoveWishlistItems = () =>
+		isItemWished
+			? setWishlistItems((prev) => prev.filter((item) => item.id !== product.id))
+			: setWishlistItems((prev) => [product, ...prev]);
+
+	const wishlistIconClasses = isItemWished ? tw`text-red-400 ri-heart-fill` : tw`ri-heart-line`;
+
 	return (
 		<div className='space-y-3 px-5'>
-			<div>
+			<div className='space-y-2'>
 				<h1 className='font-secondary text-5xl'>{product.name}</h1>
 
 				<div className='flex gap-x-3 font-semibold'>
@@ -145,9 +159,12 @@ export default function Actions({ product }: { product: IProduct }) {
 
 			<div className='divide-y'>
 				<ul className='flex flex-wrap gap-x-5 gap-y-1 pb-3'>
-					<li className='flex items-center gap-x-2 hover:opacity-50'>
-						<i className='ri-heart-line text-xl'></i>
-						<span>Add to wishlist</span>
+					<li
+						onClick={handleAddRemoveWishlistItems}
+						className='flex cursor-pointer items-center gap-x-2 hover:opacity-50'
+					>
+						<i className={`${wishlistIconClasses} text-xl duration-300`}></i>
+						<span>{isItemWished ? 'Remove from wishlist' : 'Add to wishlist'}</span>
 					</li>
 					<li className='flex items-center gap-x-2 hover:opacity-50'>
 						<i className='ri-arrow-left-right-fill text-xl'></i>

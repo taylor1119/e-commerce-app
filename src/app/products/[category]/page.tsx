@@ -1,9 +1,11 @@
 import { TCategory } from '@/common/types';
 import ProductCard from '@/components/common/ProductCard';
+import { CATEGORIES } from '@/constants';
 import PRODUCTS from '@/mocks/products';
 import { capitalize } from '@/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import FilterSidebar from './FilterSidebar';
 
 interface IProps {
@@ -11,10 +13,18 @@ interface IProps {
 }
 
 export function generateMetadata({ params }: IProps): Metadata {
-	return { title: `${capitalize(params.category)}` };
+	const category = params.category;
+	const isValidCategory = CATEGORIES.includes(category);
+	if (!isValidCategory) notFound();
+	return { title: `${capitalize(category)}` };
 }
 
 export default function page({ params }: IProps) {
+	const products =
+		params.category === 'all'
+			? PRODUCTS
+			: PRODUCTS.filter((product) => product.category === params.category);
+
 	return (
 		<main>
 			<section className='py-14'>
@@ -30,10 +40,10 @@ export default function page({ params }: IProps) {
 					<h1 className='my-8 text-center font-secondary text-5xl capitalize'>{params.category}</h1>
 					<div className='flex gap-x-2'>
 						<FilterSidebar />
-						<div className='px-8'>
+						<div className='w-full px-8'>
 							<div className='mb-8 flex flex-wrap justify-center gap-5 pt-5 font-semibold md:justify-between'>
 								<span>
-									Showing {PRODUCTS.length} of {PRODUCTS.length} items
+									Showing {products.length} of {products.length} items
 								</span>
 								<div>
 									{/*TODO add sort submenu */}
@@ -45,7 +55,7 @@ export default function page({ params }: IProps) {
 								</div>
 							</div>
 							<ul className='flex flex-wrap justify-center gap-8'>
-								{PRODUCTS.map((product) => (
+								{products.map((product) => (
 									<li key={product.id}>
 										<ProductCard product={product} />
 									</li>

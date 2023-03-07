@@ -62,7 +62,9 @@ export default function FeaturedProductsCarousel() {
 			},
 		},
 
-		[autoPlaySliderPlugin]
+		[
+			/*autoPlaySliderPlugin*/
+		]
 	);
 
 	useEffect(() => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { favoriteItemsState, shoppingCartOpenState } from '@/recoil/atoms';
+import { shoppingCartOpenState, wishlistItemsState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -14,9 +14,9 @@ export default function MobileNavbar() {
 	const [showItemsNumber, setShowItemsNumber] = useState(false);
 	useEffect(() => setShowItemsNumber(Boolean(itemsNumber)), [itemsNumber]);
 
-	const favoriteItemsNumber = useRecoilValue(favoriteItemsState).length;
-	const [hasFavoriteItems, setHasFavoriteItems] = useState(false);
-	useEffect(() => setHasFavoriteItems(Boolean(favoriteItemsNumber)), [favoriteItemsNumber]);
+	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length;
+	const [hasWishlistItems, setHasWishlistItems] = useState(false);
+	useEffect(() => setHasWishlistItems(Boolean(wishlistItemsNumber)), [wishlistItemsNumber]);
 
 	const { setTheme, theme } = useTheme();
 	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
@@ -51,11 +51,11 @@ export default function MobileNavbar() {
 					<i className='ri-user-line'></i>
 				</li>
 				<li>
-					<Link href='/favorites' className='relative'>
+					<Link href='/wishlist' className='relative'>
 						<i className='ri-star-line'></i>
-						{hasFavoriteItems && (
+						{hasWishlistItems && (
 							<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
-								{favoriteItemsNumber}
+								{wishlistItemsNumber}
 							</span>
 						)}
 					</Link>
