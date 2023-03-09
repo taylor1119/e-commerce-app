@@ -49,7 +49,7 @@ export default function SearchBar() {
 				<form className='flex h-20 items-center gap-4 rounded bg-white p-5 text-xl dark:bg-dark'>
 					<i className='ri-search-line' />
 					<input
-						className='flex-grow rounded bg-transparent focus:outline-0'
+						className='flex-grow rounded bg-transparent outline-none'
 						type='text'
 						placeholder='Search Products'
 						value={searchTerm}
