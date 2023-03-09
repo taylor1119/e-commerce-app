@@ -241,7 +241,7 @@ export default function FilterSidebar() {
 				</button>
 			)}
 
-			<aside className='hidden w-80 shrink-0 flex-col p-5 font-semibold md:flex'>
+			<aside className='hidden w-80 shrink-0 flex-col px-5 font-semibold md:flex'>
 				<FilterMenu />
 			</aside>
 

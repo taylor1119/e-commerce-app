@@ -27,9 +27,9 @@ export default function page({ params }: IProps) {
 
 	return (
 		<main>
-			<section className='py-14'>
+			<section className='pb-14 pt-5'>
 				{/*TODO Change to ul */}
-				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
+				<div className='text flex justify-center gap-x-3 px-5 capitalize'>
 					<Link href='/'>Home</Link>
 					<i className='ri-arrow-right-s-line'></i>
 					<Link href='/products/all'>Products</Link>
@@ -41,7 +41,7 @@ export default function page({ params }: IProps) {
 					<div className='flex gap-x-2'>
 						<FilterSidebar />
 						<div className='w-full px-8'>
-							<div className='mb-8 flex flex-wrap justify-center gap-5 pt-5 font-semibold md:justify-between'>
+							<div className='mb-8 flex flex-wrap justify-center gap-5 font-semibold md:justify-between'>
 								<span>
 									Showing {products.length} of {products.length} items
 								</span>

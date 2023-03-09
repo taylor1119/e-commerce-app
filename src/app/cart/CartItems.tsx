@@ -97,7 +97,7 @@ export default function CartItems() {
 
 	return (
 		<div>
-			<h1 className='my-10 text-center font-secondary text-5xl'>Cart</h1>
+			<h1 className='my-8 text-center font-secondary text-5xl'>Cart</h1>
 			{showCartItems && (
 				<ul className='flex flex-wrap justify-center gap-5'>
 					{Array.from(cartItems.values()).map((cartItem, index) => (

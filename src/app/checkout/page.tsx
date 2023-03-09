@@ -11,14 +11,14 @@ export function generateMetadata(): Metadata {
 export default function page() {
 	return (
 		<main>
-			<section className='py-14'>
+			<section className='pb-14 pt-5'>
 				{/*TODO Change to ul */}
-				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
+				<div className='text flex justify-center gap-x-3 px-5 capitalize'>
 					<Link href='/'>Home</Link>
 					<i className='ri-arrow-right-s-line'></i>
 					<span className='overflow-hidden text-ellipsis whitespace-nowrap'>Checkout</span>
 				</div>
-				<h1 className='my-10 text-center font-secondary text-5xl'>Checkout</h1>
+				<h1 className='my-8 text-center font-secondary text-5xl'>Checkout</h1>
 				<div className='flex flex-wrap justify-center'>
 					<CheckoutForm />
 					<div className='grow'>

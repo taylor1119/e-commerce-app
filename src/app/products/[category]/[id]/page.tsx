@@ -23,7 +23,7 @@ export default function page({ params }: IProps) {
 	if (!product) notFound();
 	return (
 		<main>
-			<section className='py-14'>
+			<section className='pb-14 pt-5'>
 				{/*TODO Change to ul */}
 				<div className='text flex justify-center gap-x-3 px-5 pb-5 capitalize'>
 					<Link href='/'>Home</Link>
