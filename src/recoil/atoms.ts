@@ -34,3 +34,9 @@ export const wishlistItemsState = atom<IProduct[]>({
 	default: [],
 	effects: [persistEffect<IProduct[]>('WishlistItems')],
 });
+
+export const compareItemsState = atom<IProduct[]>({
+	key: 'CompareItems',
+	default: [],
+	effects: [persistEffect<IProduct[]>('CompareItems')],
+});

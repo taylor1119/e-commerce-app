@@ -2,7 +2,7 @@
 
 import { IProduct } from '@/common/interfaces';
 import { TSize } from '@/common/types';
-import { cartItemsState, wishlistItemsState } from '@/recoil/atoms';
+import { cartItemsState, compareItemsState, wishlistItemsState } from '@/recoil/atoms';
 import { getDiscountedValue, tw } from '@/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -27,11 +27,6 @@ export default function Actions({ product }: { product: IProduct }) {
 		setQuantity(cartItems.get(`${size}.${product.id}`)?.quantity ?? 0);
 	}, [cartItems, product.id, size]);
 
-	const sizeButtonClasses = (btnSize: TSize) =>
-		btnSize === size
-			? tw`bg-black text-white dark:text-black dark:bg-white`
-			: tw`hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black`;
-
 	const [wishlistItems, setWishlistItems] = useRecoilState(wishlistItemsState);
 	const [isItemWished, setIsItemWished] = useState(false);
 	useEffect(
@@ -45,6 +40,20 @@ export default function Actions({ product }: { product: IProduct }) {
 			: setWishlistItems((prev) => [product, ...prev]);
 
 	const wishlistIconClasses = isItemWished ? tw`text-red-400 ri-heart-fill` : tw`ri-heart-line`;
+
+	const [compareItems, setCompareItems] = useRecoilState(compareItemsState);
+	const [isCompareItem, setIsCompareItem] = useState(false);
+	useEffect(
+		() => setIsCompareItem(!compareItems.every(({ id }) => id !== product.id)),
+		[compareItems, product.id]
+	);
+
+	const handleAddRemoveCompareItems = () =>
+		isCompareItem
+			? setCompareItems((prev) => prev.filter((item) => item.id !== product.id))
+			: setCompareItems((prev) => [product, ...prev]);
+
+	const compareIconClasses = isCompareItem ? tw`text-teal-400` : tw``;
 
 	return (
 		<div className='space-y-3 px-5'>
@@ -199,9 +208,14 @@ export default function Actions({ product }: { product: IProduct }) {
 						<i className={`${wishlistIconClasses} text-xl duration-300`}></i>
 						<span>{isItemWished ? 'Remove from wishlist' : 'Add to wishlist'}</span>
 					</li>
-					<li className='flex items-center gap-x-2 hover:opacity-50'>
-						<i className='ri-arrow-left-right-fill text-xl'></i>
-						<span>Compare</span>
+					<li
+						onClick={handleAddRemoveCompareItems}
+						className='flex cursor-pointer items-center gap-x-2 hover:opacity-50'
+					>
+						<i
+							className={`${compareIconClasses} ri-arrow-left-right-fill text-xl duration-300`}
+						></i>
+						<span>{isCompareItem ? 'Remove from compare' : 'Compare'}</span>
 					</li>
 					<li className='flex items-center gap-x-2 hover:opacity-50'>
 						<i className='ri-share-line text-xl'></i>

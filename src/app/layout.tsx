@@ -1,3 +1,4 @@
+import CompareHoverButton from '@/components/CompareHoverButton';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import SearchBar from '@/components/Header/SearchBar';
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<Footer />
 						<MobileNavbar />
 						<ThemeButton />
+						<CompareHoverButton />
 					</RecoilProvider>
 				</NextThemeProvider>
 			</body>

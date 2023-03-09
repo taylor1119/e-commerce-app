@@ -1,6 +1,6 @@
 'use client';
 
-import { shoppingCartOpenState, wishlistItemsState } from '@/recoil/atoms';
+import { compareItemsState, shoppingCartOpenState, wishlistItemsState } from '@/recoil/atoms';
 import { cartStatsState } from '@/recoil/selectors';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -17,6 +17,10 @@ export default function MobileNavbar() {
 	const wishlistItemsNumber = useRecoilValue(wishlistItemsState).length;
 	const [hasWishlistItems, setHasWishlistItems] = useState(false);
 	useEffect(() => setHasWishlistItems(Boolean(wishlistItemsNumber)), [wishlistItemsNumber]);
+
+	const [hasCompareItems, setHasCompareItems] = useState(false);
+	const compareItemsNumber = useRecoilValue(compareItemsState).length;
+	useEffect(() => setHasCompareItems(Boolean(compareItemsNumber)), [compareItemsNumber]);
 
 	const { setTheme, theme } = useTheme();
 	const [themeIcon, setThemeIcon] = useState('ri-computer-line');
@@ -48,7 +52,14 @@ export default function MobileNavbar() {
 					</Link>
 				</li>
 				<li>
-					<i className='ri-user-line'></i>
+					<Link href='/compare' className='relative'>
+						<i className='ri-arrow-left-right-fill'></i>
+						{hasCompareItems && (
+							<span className='absolute left-3 bottom-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-xs font-semibold text-white'>
+								{compareItemsNumber}
+							</span>
+						)}
+					</Link>
 				</li>
 				<li>
 					<Link href='/wishlist' className='relative'>
