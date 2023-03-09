@@ -1,5 +1,10 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import WishlistItems from './WishlistItems';
+
+export function generateMetadata(): Metadata {
+	return { title: 'Wishlist' };
+}
 
 export default function page() {
 	return (
