@@ -56,7 +56,7 @@ export default function Actions({ product }: { product: IProduct }) {
 	const compareIconClasses = isCompareItem ? tw`text-teal-400` : tw``;
 
 	return (
-		<div className='space-y-3 px-5'>
+		<div className='max-w-xl space-y-3 px-5'>
 			<div className='space-y-2'>
 				<h1 className='font-secondary text-5xl'>{product.name}</h1>
 

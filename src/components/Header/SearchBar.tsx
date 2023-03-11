@@ -4,6 +4,7 @@ import { IProduct } from '@/common/interfaces';
 import PRODUCTS from '@/mocks/products';
 import { searchBarOpenState } from '@/recoil/atoms';
 import { Transition } from '@headlessui/react';
+import { usePathname } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import ProductCard from '../common/ProductCard';
@@ -33,6 +34,9 @@ export default function SearchBar() {
 				PRODUCTS.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()))
 			);
 	}, [searchTerm]);
+
+	const pathname = usePathname();
+	useEffect(() => setSearchBarOpen(false), [pathname, setSearchBarOpen]);
 
 	return (
 		<Transition
