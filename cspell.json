@@ -15,7 +15,8 @@
 		"stripejs",
 		"tailwindcss",
 		"tsbuildinfo",
-		"Versace"
+		"Versace",
+		"todos"
 	],
 	"ignorePaths": ["pnpm-lock.yaml", "*.tsbuildinfo"]
 }

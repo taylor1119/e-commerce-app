@@ -130,7 +130,7 @@ export default function ShoppingCart() {
 							))}
 						</ul>
 					)}
-					{/*TODO revert color on hover */}
+
 					<div className='mt-auto space-y-3 border border-gray-50 bg-gray-100 p-5 dark:border-slate-800 dark:bg-slate-900'>
 						<CostDetails />
 						<div className='space-y-3 font-semibold'>
